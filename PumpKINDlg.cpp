@@ -327,6 +327,7 @@ int CPumpKINDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_Listener.m_Daddy=this;
 	if(!m_Listener.Create(m_ListenPort,SOCK_DGRAM)){
 		TRACE0("Failed to create socket\n");
+		AfxMessageBox(IDS_BOX_CANTBIND,MB_OK|MB_ICONEXCLAMATION);
 		return -1;
 	}
 

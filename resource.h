@@ -78,6 +78,7 @@
 #define IDS_SELECT_TFTPROOT             153
 #define IDS_FILTER_WAV                  154
 #define IDS_TITLE_WAV                   155
+#define IDS_BOX_CANTBIND                156
 #define IDC_KLEVERNET                   1000
 #define IDC_CONNECTIONS                 1001
 #define IDC_LOG                         1003

@@ -82,9 +82,10 @@ CAPTION "About PumpKIN"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,7,17,18,20
-    LTEXT           "PumpKIN, Version 2.5.1-trunk",IDC_STATIC,40,15,119,8,SS_NOPREFIX
-    LTEXT           "Copyright © 1997-2004 Klever Group",IDC_STATIC,40,30,170,
-                    8
+    LTEXT           "PumpKIN, Version 2.5.1-trunk",IDC_STATIC,40,15,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright © 1997-2004 Klever Group",IDC_STATIC,40,30,
+                    170,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
     PUSHBUTTON      "http://www.klever.net/",IDC_KLEVERNET,124,53,86,14
 END
@@ -570,6 +571,7 @@ BEGIN
     IDS_SELECT_TFTPROOT     "Select TFTP filesystem root.."
     IDS_FILTER_WAV          "Sound Files (*.wav)|*.wav||"
     IDS_TITLE_WAV           "Select sound.."
+    IDS_BOX_CANTBIND        "Failed to create listening socket. The port may be in use by another application."
 END
 
 STRINGTABLE DISCARDABLE 
@@ -597,7 +599,7 @@ END
 LANGUAGE 9, 1
 #pragma code_page(1252)
 #endif
-#include "res\pumpkin.rc2"  // non-Microsoft Visual C++ edited resources
+#include "res\PumpKIN.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
 #endif
 /////////////////////////////////////////////////////////////////////////////
