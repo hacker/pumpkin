@@ -1218,9 +1218,13 @@ BOOL CWRQSocket::Create(LPCTSTR localFile,LPCTSTR hostName)
 	ASSERT(m_Daddy);
 	ASSERT(m_Peer.sin_addr.s_addr!=INADDR_NONE || hostName);
 	m_Daddy->m_Xfers[m_hSocket]=this;
-	TurnSlashes(m_FileName,TRUE);
 	UpdateList();
-CString fn = localFile?ApplyRootGently(localFile):ApplyRoot(m_FileName);
+CString lf;
+ 	if(!localFile) {
+		lf = m_FileName;
+		TurnSlashes(lf,TRUE);
+	}
+CString fn = localFile?ApplyRootGently(localFile):ApplyRoot(lf);
 	if(!localFile){	// This is an incoming request..
 		if(CheckBadRelativeness(m_FileName)){
 			Deny(tftp::errAccessViolation,IDS_TFTP_ERROR_ACCESS);

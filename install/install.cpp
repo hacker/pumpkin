@@ -1,7 +1,7 @@
 #include "resource.h"
 #include "../shared-code/install.h"
 
-#define	KINAME "PumpKIN 2.5"
+#define	KINAME "PumpKIN 2.5.1-trunk"
 #define SKINAME "PumpKIN"
 
 BOOL Install(void)
