@@ -941,9 +941,13 @@ BOOL rv = TRUE;
 		rv = FALSE;
 		break;
 	default:
-		ASSERT(m_Daddy);
-		m_Daddy->LogLine(IDS_LOG_XFEROPCODE);
-		// *** Self destruct maybe??
+		{
+			ASSERT(m_Daddy);
+			CString tmp;
+			tmp.Format(IDS_LOG_XFEROPCODE,p->Opcode());
+			m_Daddy->LogLine(tmp);
+			// *** Self destruct maybe??
+		}
 		break;
 	}
 	return rv;
@@ -1021,9 +1025,13 @@ BOOL CWRQSocket::OnTFTP(tftp* p)
 		Destroy(FALSE);
 		return FALSE;
 	default:
-		ASSERT(m_Daddy);
-		m_Daddy->LogLine(IDS_LOG_XFEROPCODE);
-		// *** Self destruct maybe??
+		{
+			ASSERT(m_Daddy);
+			CString tmp;
+			tmp.Format(IDS_LOG_XFEROPCODE,p->Opcode());
+			m_Daddy->LogLine(tmp);
+			// *** Self destruct maybe??
+		}
 		break;
 	}
 	return TRUE;

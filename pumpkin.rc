@@ -495,7 +495,7 @@ BEGIN
     IDS_LOG_XFERSOURCETID   "Packet from unexpected source"
     IDS_LOG_SENTTFTPERROR   ":%u: %s"
     IDS_LOG_GOTTFTPERROR    "TFTP:%u: %s"
-    IDS_LOG_XFEROPCODE      "Invalid opcode during transfer received"
+    IDS_LOG_XFEROPCODE      "Invalid opcode (%u) during transfer received"
     IDS_LOG_XFERRRQFINISHED "Transfer of '%s' has successfully completed"
     IDS_TITLE_OPTIONS       "Options"
     IDS_LOG_WRQSERVE        "Writing of '%s' of type '%s' is requested by %s"
