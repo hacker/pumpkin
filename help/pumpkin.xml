@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<winhelp>
+ <topic id="About" title="About PumpKIN" keywords="about">
+  <heading scroll="no">About <kin>PumpKIN</kin></heading>
+  <p><kin>PumpKIN</kin> is a program designed to send and receive files over the net while having <kin href="http://www.klever.net/kin/t42.html">T42</kin> or <product href="http://www.elf.com/elf/wintalk.html">Wintalk</product> session running using <term>TFTP</term> (<rfc num="1350"/>) protocol. It includes full-functional <term>TFTP</term> server/client so it may be useful for maintaining <a href="http://www.cisco.com/">CISCO</a> routers and other network equipment.</p>
+  <p/>
+  <p><b><i>Enjoy!</i></b></p>
+  <license years="1997, 1998, 2002"/>
+  <credist/>
+ </topic>
+ <topic id="News" title="What's New">
+  <newsfor version="2.5" date="August 19st, 2002">
+   <ni>Change of <a href="#About">license</a> and opening the source.</ni>
+   <ni>Minor cosmetic changes, mostly in build process</ni>
+  </newsfor>
+  <newsfor version="2.0" date="June 13th, 1998">
+   <ni>Sounds customization. Now you can customize <kin>PumpKIN</kin> bells and whistles or turn them off completely.</ni>
+   <ni>Previous version of <kin>PumpKIN</kin> had a bug causing it to misbehave when you're requesting file from remote <term>tftp</term> server using <b>IP Address</b> (as opposed to <b>hostname</b>).</ni>
+   <ni>Typo causing <kin>PumpKIN</kin> to log outgoing request in reverse (i.e. <i>Requesting 'hostname' from 'filename'</i>) fixed.</ni>
+   <ni>Something else that you may not notice and I can not remember.</ni>
+  </newsfor>
+  <newsfor version="1.5" date="February 12th, 1998">
+   <ni>Transfer resumes. No checking on file contents is done, so it's up to you to decide whether you want to start transmission from the beginning or resume unfinished transfer.</ni>
+   <ni>Support for <b>block size</b>, <b>trasnfer size</b> and <b>transfer timeout</b> options as described in <rfc num="1782"/>, <rfc num="1783"/> and <rfc num="1784"/>. I'm not sure if there are any other <term>TFTP</term> implementations supporting this, but at least it makes sense if you use <kin>PumpKIN</kin> on both ends.</ni>
+   <ni>New Install program</ni>
+  </newsfor>
+ </topic>
+ <topic id="Using" title="Using PumpKIN">
+  <heading scroll="no">Using <kin>PumpKIN</kin></heading>
+  <p>This is a simple program for file exchange between two parties. It allows you to send files over the network to your party while having a <kin href="http://www.klever.net/kin/t42.html">T42</kin> or <product href="http://elf.com/elf/wintalk.html">Wintalk</product> conversation. It uses open sessions to determine IP address of your party. Also you may use it as a <term>TFTP</term> client/server by itself. To get/put files from/to <term>TFTP</term> server you need to enter host name/IP address manually in the <a href="#Request">Request Dialog</a>.</p>
+  <p>To Abort transfer(s) currently in progress - select transfer(s) you want to terminate in the list and click <b>Abort xfer</b> button.</p>
+  <p>You may want to hide <kin>PumpKIN</kin> window and leave it as a tray icon only. Just click the <image source="pumpkin.bmp"/> icon in the tray or simply close the window.</p>
+  <p>Use <a href="#Options">Options</a> button to set <kin>PumpKIN</kin> options.</p>
+ </topic>
+ <topic id="ConfirmRRQ" title="Confirm Read Request Dialog">
+  <heading scroll="no">Confirm Read Request Dialog</heading>
+  <p>When the file is requested from your <term>TFTP</term> server you may choose to <b>Grant Access</b> to this file or to <b>Deny Access</b>. If you hesitate to answer for <a href="#ConfirmationTimeout"><b>Confirmation timeout</b></a> (<i>default - 30 seconds</i>) <kin>PumpKIN</kin> defaults to denial of all requests.</p>
+ </topic>
+ <topic id="ConfirmWRQ" title="Confirm Write Request Dialog">
+  <heading scroll="no">Confirm Write Request Dialog</heading>
+  <p>Whenever your party sends you a file you have always a choice to accept it or not. You can also save the file under a different name by choosing the <b>Rename</b> option. If you already have file with such name you may chose to <b>resume</b> transfer. No checking on file contents is done. This option may or may not work depending on remote implementation of protocol. It does work if you use <kin>PumpKIN</kin> on both ends. If you are still unsure for <a href="#ConfirmationTimeOut"><b>Confirmation timeout</b></a> (<i>default - 30 seconds</i>) <kin>PumpKIN</kin> will make safe decision for you (deny).</p>
+ </topic>
+ <topic id="Request" title="Request Dialog">
+  <heading scroll="no">Request Dialog</heading>
+  <p>Request dialog is aimed to let you form read or write request. You may set the following options:</p>
+  <ul>
+   <li><b>Local File</b> - You can change the name of the file you're sending (or destination in case you're receiving) right here. You may also use <b>Browse</b> button to select the file.</li>
+   <li><b>Remote File</b> Specifies the name of file on the remote host you're requesting (in case of read request) or the name of file you want your file to appear as (in case of write request).</li>
+   <li><b>Remote Host</b> is your party's host or <term>TFTP</term> server you're requesting file from/sending file to. To refresh the list of your talk windows use <b>REFRESH</b> button.</li>
+   <li><b>Type</b> is the type of transfer as defined in <rfc num="1350"/>. Doesn't mean much, really. Defined types are '<i>octet</i>' or '<i>netascii</i>'. Default is '<i>octet</i>'.</li>
+   <li><b>Block Size</b> - Use this block size if remote is <rfc num="1783"/>-compliant. If remote doesn't support this option <kin>PumpKIN</kin> will fallback to 512 bytes per block.</li>
+  </ul>
+ </topic>
+ <topic id="Options" title="Options">
+  <heading scroll="no">Options</heading>
+  <p><kin>PumpKIN</kin> options property sheet consists of two tabs. For more information see <a href="#NetworkOptions"><b>Network</b></a> and <a herf="#ServerOptions"><b>Server</b></a> options.</p>
+ </topic>
+ <topic id="NetworkOptions" title="Network Options">
+  <heading scroll="no">Network Options</heading>
+  <ul>
+   <li><b>UDP Ports</b>
+    <ul>
+     <li><b>Listen for incoming connections on port</b> - specifies the port we're listening to. The default as defined in <rfc num="1350"/> is 69.</li>
+     <li><b>Send outgoing requests to port</b> - specifies the port we're going to send all requests to.</li>
+    </ul>
+   </li>
+   <li><b>Default Connection timeout</b> - if there's no activity for specified time, transfer is considered to be dead and terminated. <kin>PumpKIN</kin> tries to propagate this value to remote as described in <rfc num="1782"/> and <rfc num="1784"/> if possible.</li>
+   <li><b>Default Block Size</b> - <kin>PumpKIN</kin> tries to negotiate block size with remote using this value unless specified explicitly in request. If remote doesn't support <rfc num="1782"/> and <rfc num="1783"/> <kin>PumpKIN</kin> falls back to 512 bytes per block.</li>
+  </ul>
+ </topic>
+ <topic id="ServerOptions" title="Server Options">
+  <heading scroll="no">Server Options</heading>
+  <ul>
+   <li><b>TFTP Filesystem root</b> - Specifies the location of files you're transmitting or where to start looking for them from. Defaults to the directory you start <kin>PumpKIN</kin> for the first time from.</li>
+   <li><b>Allow access to subdirectories</b> - specifies whether you want allow access to the whole subtree of <b>TFTP Root</b> or only to the directory itself.</li>
+   <li><b>Read Request Behavior</b> - You may choose to automatically agree to give all files requested, to be prompted to confirm these operations, or to deny all requests as if you're not even here.</li>
+   <li><b>Write Request Behavior</b> - You may chose to <b>take all files</b> (<i>not recommended</i>), to <b>prompt only if file exists already</b>, <b>Always prompt</b> or <b>Deny all requests</b>.</li>
+   <li><a name="ConfirmationTimeOut"/><b>Confirmation timeout</b> - this is the time <kin>PumpKIN</kin> will wait for you to accept or deny request before it will give up and take default action which is always deny.</li>
+  </ul>
+ </topic>
+ <topic id="SoundsOptoins" title="Sounds Options">
+  <heading scroll="no">Sounds</heading>
+  <p>You can customize <kin>PumpKIN</kin> sounds notifications here. There are three customizable sounds defined - <b>Incoming request</b>, which notifies you about incoming request prompt if you're set to be prompted whenever incoming request occurs. <b>xfer Aborted</b> - which happens to sound every time transfer is interrupted for whatever reason - time out, explicit kill, denied access, etc. <b>xfer Finished</b> means that your file was successfully transmitted.</p>
+  <p>You can select any <b>.wav</b> file or one of the predefined sounds from the dropdown list.</p>
+ </topic>
+</winhelp>

@@ -1,0 +1,33 @@
+
+Before compiling canned install executable the following files should be placed
+in the build tree:
+
+redist/mfc42.dl_
+
+Release checklist:
+	(These are tags stored in KTAGS file. please, keep in sync. Use vim to
+	jump to these tags. I haven't tried it on windows, though).
+
+|help-news|				- Release notes in help file
+
+Version number in the following places:
+
+|about-version|				- About box
+|vsinfo-numeric-version|		- VERSIONINFO numerical File&Prod V
+|vsinfo-string-version|			- VERSIONINFO string File&Prod V
+|install-version|			- Version used in install
+|install-vsinfo-numeric-version|	- install's VERSIONINFO block
+|install-vsinfo-string-version|		- install's VERSIONINFO block
+
+If the year flips check these:
+
+|about-date|				- About box
+|help-license-date|			- license in help file
+|license-date|				- license in COPYING file
+|vsinfo-date|				- Copyright in VERSIONINFO block
+|install-vsinfo-date|			- Copyright in install's VERSIONINFO
+					block
+
+
+This is for vim (don't remove):
+ vim:set tags=KTAGS isk=!-~,^*,^\|,^\" ft=help:

@@ -1,0 +1,14 @@
+:Base PumpKIN.hlp>Standard
+:Title PumpKIN
+1 PumpKIN
+2 About PumpKIN=About
+2 What's New=News
+2 Using PumpKIN=Using
+1 PumpKIN Dialogs
+2 Confirm Read Request Dialog=ConfirmRRQ
+2 Confirm Write Request Dialog=ConfirmWRQ
+2 Request Dialog=Request
+1 PumpKIN Options
+2 Server Options=ServerOptions
+2 Network Options=NetworkOptions
+2 Sounds Options=SoundsOptions
