@@ -83,7 +83,7 @@ FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,7,17,18,20
     LTEXT           "PumpKIN, Version 2.5",IDC_STATIC,40,15,119,8,SS_NOPREFIX
-    LTEXT           "Copyright © 1997,1998,2002 Klever Group",IDC_STATIC,40,30,170,
+    LTEXT           "Copyright © 1997-2004 Klever Group",IDC_STATIC,40,30,170,
                     8
     DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
     PUSHBUTTON      "http://www.klever.net/",IDC_KLEVERNET,124,53,86,14
@@ -306,7 +306,7 @@ BEGIN
             VALUE "FileDescription", "PumpKIN, tftp client/daemon\0"
             VALUE "FileVersion", "2, 5, 0, 0\0"
             VALUE "InternalName", "PUMPKIN\0"
-            VALUE "LegalCopyright", "Copyright © 1997, 1998, 2002 Klever Group (http://www.klever.net)\0"
+            VALUE "LegalCopyright", "Copyright © 1997-2004 Klever Group (http://www.klever.net)\0"
             VALUE "LegalTrademarks", "Klever Group (http://www.klever.net/)\0"
             VALUE "OriginalFilename", "PUMPKIN.EXE\0"
             VALUE "ProductName", "PumpKIN\0"
@@ -517,7 +517,7 @@ BEGIN
     IDS_LOG_FAILEDLOCALFILE "Failed to open local file '%s'"
     IDS_LOG_FAILEDTOOPEN    "Failed to open '%s'"
     IDS_OTALXHEADING        "Open Talks: talking to "
-    IDS_REGISTRYKEY         "Klever Group, Inc."
+    IDS_REGISTRYKEY         "Klever Group"
     IDS_KLEVERNET_URL       "http://www.klever.net/"
     IDS_LOGTIMEFORMAT       "%H:%M:%S %B %d"
 END

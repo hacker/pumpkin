@@ -151,7 +151,7 @@ BEGIN
             VALUE "FileDescription", "INSTALL: PumpKIN, tftp client/daemon\0"
             VALUE "FileVersion", "2, 5, 0, 0\0"
             VALUE "InternalName", "INSTALL\0"
-            VALUE "LegalCopyright", "Copyright © 1997, 1998, 2002 Klever Group (http://www.klever.net/)\0"
+            VALUE "LegalCopyright", "Copyright © 1997-2004 Klever Group (http://www.klever.net/)\0"
             VALUE "LegalTrademarks", "Klever Group (http://www.klever.net/)\0"
             VALUE "OriginalFilename", "INSTALL.EXE\0"
             VALUE "ProductName", "PumpKIN\0"

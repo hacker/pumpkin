@@ -2,16 +2,16 @@
 <winhelp>
  <topic id="About" title="About PumpKIN" keywords="about">
   <heading scroll="no">About <kin>PumpKIN</kin></heading>
-  <p><kin>PumpKIN</kin> is a program designed to send and receive files over the net while having <kin href="http://www.klever.net/kin/t42.html">T42</kin> or <product href="http://www.elf.com/elf/wintalk.html">Wintalk</product> session running using <term>TFTP</term> (<rfc num="1350"/>) protocol. It includes full-functional <term>TFTP</term> server/client so it may be useful for maintaining <a href="http://www.cisco.com/">CISCO</a> routers and other network equipment.</p>
+  <p><kin>PumpKIN</kin> is a program designed to send and receive files over the net while having <kin href="http://kin.klever.net/T42/">T42</kin> or <product>Wintalk</product> session running using <term>TFTP</term> (<rfc num="1350"/>) protocol. It includes full-functional <term>TFTP</term> server/client so it may be useful for maintaining <a href="http://www.cisco.com/">CISCO</a> routers and other network equipment.</p>
   <p/>
   <p><b><i>Enjoy!</i></b></p>
-  <license years="1997, 1998, 2002"/>
+  <license years="1997-2004"/>
   <credist/>
  </topic>
  <topic id="News" title="What's New">
-  <newsfor version="2.5" date="August 19st, 2002">
+  <newsfor version="2.5" date="July 11th, 2004">
    <ni>Change of <a href="#About">license</a> and opening the source.</ni>
-   <ni>Minor cosmetic changes, mostly in build process</ni>
+   <ni>Minor cosmetic changes</ni>
   </newsfor>
   <newsfor version="2.0" date="June 13th, 1998">
    <ni>Sounds customization. Now you can customize <kin>PumpKIN</kin> bells and whistles or turn them off completely.</ni>
@@ -27,7 +27,7 @@
  </topic>
  <topic id="Using" title="Using PumpKIN">
   <heading scroll="no">Using <kin>PumpKIN</kin></heading>
-  <p>This is a simple program for file exchange between two parties. It allows you to send files over the network to your party while having a <kin href="http://www.klever.net/kin/t42.html">T42</kin> or <product href="http://elf.com/elf/wintalk.html">Wintalk</product> conversation. It uses open sessions to determine IP address of your party. Also you may use it as a <term>TFTP</term> client/server by itself. To get/put files from/to <term>TFTP</term> server you need to enter host name/IP address manually in the <a href="#Request">Request Dialog</a>.</p>
+  <p>This is a simple program for file exchange between two parties. It allows you to send files over the network to your party while having a <kin href="http://kin.klever.net/T42/">T42</kin> or <product>Wintalk</product> conversation. It uses open sessions to determine IP address of your party. Also you may use it as a <term>TFTP</term> client/server by itself. To get/put files from/to <term>TFTP</term> server you need to enter host name/IP address manually in the <a href="#Request">Request Dialog</a>.</p>
   <p>To Abort transfer(s) currently in progress - select transfer(s) you want to terminate in the list and click <b>Abort xfer</b> button.</p>
   <p>You may want to hide <kin>PumpKIN</kin> window and leave it as a tray icon only. Just click the <image source="pumpkin.bmp"/> icon in the tray or simply close the window.</p>
   <p>Use <a href="#Options">Options</a> button to set <kin>PumpKIN</kin> options.</p>
