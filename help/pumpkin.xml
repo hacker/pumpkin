@@ -5,10 +5,15 @@
   <p><kin>PumpKIN</kin> is a program designed to send and receive files over the net while having <kin href="http://kin.klever.net/T42/">T42</kin> or <product>Wintalk</product> session running using <term>TFTP</term> (<rfc num="1350"/>) protocol. It includes full-functional <term>TFTP</term> server/client so it may be useful for maintaining <a href="http://www.cisco.com/">CISCO</a> routers and other network equipment.</p>
   <p/>
   <p><b><i>Enjoy!</i></b></p>
-  <license years="1997-2004"/>
+  <license years="1997-2005"/>
   <credist/>
  </topic>
  <topic id="News" title="What's New">
+  <newsfor version="2.6" date="August 6th, 2005">
+   <ni>more robust solution to the backslash/slash dilemma</ni>
+   <ni>A bit more elaborate error reporting</ni>
+   <ni>Fixed uninstall procedure so that it works on XP</ni>
+  </newfor>
   <newsfor version="2.5" date="July 11th, 2004">
    <ni>Change of <a href="#About">license</a> and opening the source.</ni>
    <ni>Minor cosmetic changes</ni>

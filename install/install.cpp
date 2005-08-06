@@ -1,7 +1,8 @@
 #include "resource.h"
 #include "../shared-code/install.h"
 
-#define	KINAME "PumpKIN 2.5.1-trunk"
+#define VERSION "2.6"
+#define	KINAME "PumpKIN " VERSION
 #define SKINAME "PumpKIN"
 
 BOOL Install(void)
@@ -60,6 +61,12 @@ FILE* inf=CREATE_INF_FILE(path,SKINAME ".INF");
 	fclose(inf);
 
 	REG_UNINSTALL_COMMAND(SKINAME,"Klever " KINAME,shortPath,SKINAME ".INF","Uninstall");
+    REG_UNINSTALL_ICON(SKINAME,path,SKINAME ".exe",0);
+    REG_UNINSTALL_COMMENT(SKINAME,"Klever PumpKIN");
+    REG_UNINSTALL_VERSION(SKINAME,VERSION);
+    REG_UNINSTALL_LOCATION(SKINAME,path);
+    REG_UNINSTALL_PUBLISHER(SKINAME,"Klever Group");
+    REG_UNINSTALL_URLS(SKINAME,"http://www.klever.net/","http://kin.klever.net/pumpkin/");
 
 	MessageBox(NULL,KINAME " installed successfully, you may now run it from 'Programs/Klever Group' menu or remove it using Control Panel Add/Remove Programs applet."," Rejoice!",MB_ICONINFORMATION|MB_OK);
 

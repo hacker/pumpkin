@@ -2,7 +2,7 @@ about-date	pumpkin.rc	/LTEXT\s\+"Copyright /;"	kind:d
 about-version	pumpkin.rc	/LTEXT\s\+"PumpKIN, Version /;"	kind:v
 help-license-date	./help/pumpkin.xml	/<license\s/;"	kind:d
 help-news	./help/pumpkin.xml	/<newsfor\s/
-install-version	./install/install.cpp	/^#define\s\+KINAME\s\+"/;"	kind:v
+install-version	./install/install.cpp	/^#define\s\+VERSION\s\+"/;"	kind:v
 install-vsinfo-date	install/install.rc	/^\s\+VALUE\s\+"LegalCopyright",/;"	kind:d
 install-vsinfo-numeric-version	install/install.rc	/^\s\+FILEVERSION\s\+/;"	kind:v
 install-vsinfo-string-version	install/install.rc	/^\s\+VALUE\s\+"FileVersion",/;"	kind:v

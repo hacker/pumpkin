@@ -39,9 +39,9 @@ NULL=nul
 ################################################################################
 # Begin Project
 # PROP Target_Last_Scanned "Install - Win32 Canned"
+CPP=cl.exe
 RSC=rc.exe
 MTL=mktyplib.exe
-CPP=cl.exe
 
 !IF  "$(CFG)" == "PumpKIN - Win32 Release"
 
@@ -77,7 +77,7 @@ CLEAN :
 	-@erase "$(INTDIR)\pumpkin.hlp"
 	-@erase "$(INTDIR)\PumpKIN.obj"
 	-@erase "$(INTDIR)\pumpkin.pch"
-	-@erase "$(INTDIR)\PumpKIN.res"
+	-@erase "$(INTDIR)\pumpkin.res"
 	-@erase "$(INTDIR)\PumpKINDlg.obj"
 	-@erase "$(INTDIR)\RequestDlg.obj"
 	-@erase "$(INTDIR)\Resolver.obj"
@@ -102,7 +102,7 @@ CPP_SBRS=.\.
 MTL_PROJ=/nologo /D "NDEBUG" /win32 
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/PumpKIN.res" /d "NDEBUG" /d "_AFXDLL" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/pumpkin.res" /d "NDEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -121,7 +121,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
 	"$(INTDIR)\PumpKIN.obj" \
-	"$(INTDIR)\PumpKIN.res" \
+	"$(INTDIR)\pumpkin.res" \
 	"$(INTDIR)\PumpKINDlg.obj" \
 	"$(INTDIR)\RequestDlg.obj" \
 	"$(INTDIR)\Resolver.obj" \
@@ -185,7 +185,7 @@ CLEAN :
 	-@erase "$(INTDIR)\pumpkin.hlp"
 	-@erase "$(INTDIR)\PumpKIN.obj"
 	-@erase "$(INTDIR)\pumpkin.pch"
-	-@erase "$(INTDIR)\PumpKIN.res"
+	-@erase "$(INTDIR)\pumpkin.res"
 	-@erase "$(INTDIR)\PumpKIN.sbr"
 	-@erase "$(INTDIR)\PumpKINDlg.obj"
 	-@erase "$(INTDIR)\PumpKINDlg.sbr"
@@ -222,7 +222,7 @@ CPP_SBRS=.\Debug/
 MTL_PROJ=/nologo /D "_DEBUG" /win32 
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/PumpKIN.res" /d "_DEBUG" /d "_AFXDLL" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/pumpkin.res" /d "_DEBUG" /d "_AFXDLL" 
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -258,7 +258,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
 	"$(INTDIR)\PumpKIN.obj" \
-	"$(INTDIR)\PumpKIN.res" \
+	"$(INTDIR)\pumpkin.res" \
 	"$(INTDIR)\PumpKINDlg.obj" \
 	"$(INTDIR)\RequestDlg.obj" \
 	"$(INTDIR)\Resolver.obj" \
@@ -316,7 +316,7 @@ CLEAN :
 	-@erase "$(INTDIR)\pumpkin.hlp"
 	-@erase "$(INTDIR)\PumpKIN.obj"
 	-@erase "$(INTDIR)\pumpkin.pch"
-	-@erase "$(INTDIR)\PumpKIN.res"
+	-@erase "$(INTDIR)\pumpkin.res"
 	-@erase "$(INTDIR)\PumpKINDlg.obj"
 	-@erase "$(INTDIR)\RequestDlg.obj"
 	-@erase "$(INTDIR)\Resolver.obj"
@@ -340,7 +340,7 @@ CPP_SBRS=.\.
 MTL_PROJ=/nologo /D "NDEBUG" /win32 
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x409 /d "NDEBUG"
-RSC_PROJ=/l 0x409 /fo"$(INTDIR)/PumpKIN.res" /d "NDEBUG" 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)/pumpkin.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
@@ -359,7 +359,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
 	"$(INTDIR)\PumpKIN.obj" \
-	"$(INTDIR)\PumpKIN.res" \
+	"$(INTDIR)\pumpkin.res" \
 	"$(INTDIR)\PumpKINDlg.obj" \
 	"$(INTDIR)\RequestDlg.obj" \
 	"$(INTDIR)\Resolver.obj" \
@@ -461,22 +461,24 @@ LINK32_OBJS= \
 OUTDIR=.\Install\Pure
 INTDIR=.\Install\Pure
 
-ALL : "$(OUTDIR)\Install.exe"
+ALL : "$(OUTDIR)\Install.exe" "$(OUTDIR)\Install.bsc"
 
 CLEAN : 
 	-@erase "$(INTDIR)\install.obj"
 	-@erase "$(INTDIR)\Install.res"
+	-@erase "$(INTDIR)\install.sbr"
+	-@erase "$(OUTDIR)\Install.bsc"
 	-@erase "$(OUTDIR)\Install.exe"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /YX /c
-# ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /YX /c
+# ADD CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /FR /YX /c
 CPP_PROJ=/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D\
- "_MBCS" /Fp"$(INTDIR)/Install.pch" /YX /Fo"$(INTDIR)/" /c 
+ "_MBCS" /FR"$(INTDIR)/" /Fp"$(INTDIR)/Install.pch" /YX /Fo"$(INTDIR)/" /c 
 CPP_OBJS=.\Install\Pure/
-CPP_SBRS=.\.
+CPP_SBRS=.\Install\Pure/
 # ADD BASE MTL /nologo /D "NDEBUG" /win32
 # ADD MTL /nologo /D "NDEBUG" /win32
 MTL_PROJ=/nologo /D "NDEBUG" /win32 
@@ -488,7 +490,13 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 BSC32_FLAGS=/nologo /o"$(OUTDIR)/Install.bsc" 
 BSC32_SBRS= \
-	
+	"$(INTDIR)\install.sbr"
+
+"$(OUTDIR)\Install.bsc" : "$(OUTDIR)" $(BSC32_SBRS)
+    $(BSC32) @<<
+  $(BSC32_FLAGS) $(BSC32_SBRS)
+<<
+
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib version.lib /nologo /subsystem:windows /machine:I386
@@ -829,21 +837,21 @@ DEP_RSC_PUMPKIN=\
 !IF  "$(CFG)" == "PumpKIN - Win32 Release"
 
 
-"$(INTDIR)\PumpKIN.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
+"$(INTDIR)\pumpkin.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
    $(RSC) $(RSC_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
 
-"$(INTDIR)\PumpKIN.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
+"$(INTDIR)\pumpkin.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
    $(RSC) $(RSC_PROJ) $(SOURCE)
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
 
-"$(INTDIR)\PumpKIN.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
+"$(INTDIR)\pumpkin.res" : $(SOURCE) $(DEP_RSC_PUMPKIN) "$(INTDIR)"
    $(RSC) $(RSC_PROJ) $(SOURCE)
 
 
@@ -1397,9 +1405,15 @@ DEP_CPP_INSTAL=\
 !ELSEIF  "$(CFG)" == "Install - Win32 Pure"
 
 
-"$(INTDIR)\install.obj" : $(SOURCE) $(DEP_CPP_INSTAL) "$(INTDIR)"
-   $(CPP) $(CPP_PROJ) $(SOURCE)
+BuildCmds= \
+	$(CPP) $(CPP_PROJ) $(SOURCE) \
+	
 
+"$(INTDIR)\install.obj" : $(SOURCE) $(DEP_CPP_INSTAL) "$(INTDIR)"
+   $(BuildCmds)
+
+"$(INTDIR)\install.sbr" : $(SOURCE) $(DEP_CPP_INSTAL) "$(INTDIR)"
+   $(BuildCmds)
 
 !ELSEIF  "$(CFG)" == "Install - Win32 Static"
 
