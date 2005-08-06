@@ -13,7 +13,7 @@
    <ni>more robust solution to the backslash/slash dilemma</ni>
    <ni>A bit more elaborate error reporting</ni>
    <ni>Fixed uninstall procedure so that it works on XP</ni>
-  </newfor>
+  </newsfor>
   <newsfor version="2.5" date="July 11th, 2004">
    <ni>Change of <a href="#About">license</a> and opening the source.</ni>
    <ni>Minor cosmetic changes</ni>
