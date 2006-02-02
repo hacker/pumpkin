@@ -2,25 +2,25 @@
 
 [General Info]
 Version=1
-LastClass=CPropsSounds
-LastTemplate=CPropertyPage
+LastClass=CPropsServer
+LastTemplate=CComboBox
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "PumpKIN.h"
 
-ClassCount=12
+ClassCount=14
 Class1=CPumpKINApp
 Class2=CPumpKINDlg
 Class3=CAboutDlg
 
-ResourceCount=9
+ResourceCount=10
 Resource1=IDD_REQUEST
-Resource2=IDD_PROPS_SERVER
+Resource2=IDD_PROPS_NETWORK
 Resource3=IDD_CONFIRM_RRQ
 Resource4=IDD_ABOUTBOX
 Class4=CPropsServer
 Class5=CPropsNetwork
 Resource5=IDD_CONFIRM_WRQ
-Resource6=IDD_PROPS_NETWORK
+Resource6=IDD_PROPS_ACL
 Class6=CConfirmRRQDlg
 Class7=CConfirmWRQDlg
 Resource7=IDD_PUMPKIN_DIALOG
@@ -31,6 +31,9 @@ Class11=CTrayer
 Resource8=IDD_PROPS_SOUNDS
 Class12=CPropsSounds
 Resource9=IDM_POPUPS
+Class13=CPropsACL
+Class14=CACLTargetCombo
+Resource10=IDD_PROPS_SERVER
 
 [CLS:CPumpKINApp]
 Type=0
@@ -45,7 +48,7 @@ ImplementationFile=PumpKINDlg.cpp
 Filter=W
 BaseClass=CDialog
 VirtualFilter=dWC
-LastObject=ID_HELP
+LastObject=CPumpKINDlg
 
 [CLS:CAboutDlg]
 Type=0
@@ -69,7 +72,7 @@ Control5=IDC_KLEVERNET,button,1342242816
 [DLG:IDD_PUMPKIN_DIALOG]
 Type=1
 Class=CPumpKINDlg
-ControlCount=9
+ControlCount=10
 Control1=IDC_CONNECTIONS,SysListView32,1350631681
 Control2=IDC_GET,button,1342259200
 Control3=IDC_PUT,button,1342259200
@@ -79,11 +82,12 @@ Control6=IDC_EXIT,button,1342259200
 Control7=ID_HELP,button,1342259200
 Control8=IDC_LOG,listbox,1353728129
 Control9=IDCANCEL,button,1073741824
+Control10=IDC_LISTENING,button,1342275619
 
 [DLG:IDD_PROPS_SERVER]
 Type=1
 Class=CPropsServer
-ControlCount=15
+ControlCount=18
 Control1=IDC_STATIC,button,1342177287
 Control2=IDC_TFTPROOT,edit,1350631552
 Control3=IDC_BROWSE,button,1342242880
@@ -99,6 +103,9 @@ Control12=IDC_WRQ_ALWAYSCONFIRM,button,1342177289
 Control13=IDC_WRQ_DENYALL,button,1342177289
 Control14=IDC_STATIC,static,1342308609
 Control15=IDC_PROMPTTIMEOUT,msctls_trackbar32,1342242823
+Control16=IDC_STATIC,button,1342177287
+Control17=IDC_LOGFILE,edit,1350631552
+Control18=IDC_LOGFILE_BROWSE,button,1342242880
 
 [DLG:IDD_PROPS_NETWORK]
 Type=1
@@ -127,7 +134,7 @@ ImplementationFile=PropsServer.cpp
 BaseClass=CPropertyPage
 Filter=D
 VirtualFilter=idWC
-LastObject=CPropsServer
+LastObject=IDC_LOGFILE_BROWSE
 
 [CLS:CPropsNetwork]
 Type=0
@@ -136,7 +143,7 @@ ImplementationFile=PropsNetwork.cpp
 BaseClass=CPropertyPage
 Filter=D
 VirtualFilter=idWC
-LastObject=CPropsNetwork
+LastObject=IDC_BLOCKSIZE
 
 [DLG:IDD_CONFIRM_RRQ]
 Type=1
@@ -230,12 +237,13 @@ Class=CPumpKINDlg
 Command1=ID_TRAY_SENDFILE
 Command2=ID_TRAY_FETCHFILE
 Command3=ID_TRAY_OPTIONS
-Command4=ID_TRAY_SHOWPUMPKINWINDOW
-Command5=ID_TRAY_OPENFILESFOLDER
-Command6=ID_TRAY_HELP
-Command7=ID_TRAY_ABOUTPUMPKIN
-Command8=ID_TRAY_EXIT
-CommandCount=8
+Command4=ID_TRAY_LISTEN
+Command5=ID_TRAY_SHOWPUMPKINWINDOW
+Command6=ID_TRAY_OPENFILESFOLDER
+Command7=ID_TRAY_HELP
+Command8=ID_TRAY_ABOUTPUMPKIN
+Command9=ID_TRAY_EXIT
+CommandCount=9
 
 [CLS:CRetrier]
 Type=0
@@ -280,4 +288,40 @@ BaseClass=CPropertyPage
 Filter=D
 LastObject=CPropsSounds
 VirtualFilter=idWC
+
+[DLG:IDD_PROPS_ACL]
+Type=1
+Class=CPropsACL
+ControlCount=14
+Control1=IDC_ACL_LIST,SysListView32,1350631425
+Control2=IDC_ACL_UP,button,1342246720
+Control3=IDC_ACL_DOWN,button,1342246720
+Control4=IDC_ACL_REMOVE,button,1342246720
+Control5=IDC_STATIC,static,1342308352
+Control6=IDC_ACL_XFER,combobox,1344339971
+Control7=IDC_STATIC,static,1342308352
+Control8=IDC_ACL_ADDR,edit,1350631552
+Control9=IDC_STATIC,static,1342308352
+Control10=IDC_ACL_NETMASK,edit,1350631552
+Control11=IDC_STATIC,static,1342308352
+Control12=IDC_ACL_RULE,combobox,1344339971
+Control13=IDC_ACL_ADD,button,1342242816
+Control14=IDC_ACL_REPLACE,button,1342242816
+
+[CLS:CPropsACL]
+Type=0
+HeaderFile=PropsACL.h
+ImplementationFile=PropsACL.cpp
+BaseClass=CPropertyPage
+Filter=D
+LastObject=CPropsACL
+VirtualFilter=idWC
+
+[CLS:CACLTargetCombo]
+Type=0
+HeaderFile=ACLTargetCombo.h
+ImplementationFile=ACLTargetCombo.cpp
+BaseClass=CComboBox
+Filter=W
+LastObject=CACLTargetCombo
 

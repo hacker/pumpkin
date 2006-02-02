@@ -66,8 +66,10 @@ ALL : "$(OUTDIR)\pumpkin.exe" "$(OUTDIR)\pumpkin.ex_" "$(OUTDIR)\pumpkin.hlp"\
  "$(OUTDIR)\pumpkin.cnt" "$(OUTDIR)\pumpkin.hl_" "$(OUTDIR)\pumpkin.cn_"
 
 CLEAN : 
+	-@erase "$(INTDIR)\ACLTargetCombo.obj"
 	-@erase "$(INTDIR)\ConfirmRRQDlg.obj"
 	-@erase "$(INTDIR)\ConfirmWRQDlg.obj"
+	-@erase "$(INTDIR)\PropsACL.obj"
 	-@erase "$(INTDIR)\PropsNetwork.obj"
 	-@erase "$(INTDIR)\PropsServer.obj"
 	-@erase "$(INTDIR)\PropsSounds.obj"
@@ -115,8 +117,10 @@ LINK32=link.exe
 LINK32_FLAGS=/nologo /subsystem:windows /incremental:no\
  /pdb:"$(OUTDIR)/pumpkin.pdb" /machine:I386 /out:"$(OUTDIR)/pumpkin.exe" 
 LINK32_OBJS= \
+	"$(INTDIR)\ACLTargetCombo.obj" \
 	"$(INTDIR)\ConfirmRRQDlg.obj" \
 	"$(INTDIR)\ConfirmWRQDlg.obj" \
+	"$(INTDIR)\PropsACL.obj" \
 	"$(INTDIR)\PropsNetwork.obj" \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
@@ -169,10 +173,14 @@ ALL : "$(OUTDIR)\pumpkin.exe" "$(OUTDIR)\pumpkin.bsc" "$(OUTDIR)\pumpkin.ex_"\
  "$(OUTDIR)\pumpkin.cn_"
 
 CLEAN : 
+	-@erase "$(INTDIR)\ACLTargetCombo.obj"
+	-@erase "$(INTDIR)\ACLTargetCombo.sbr"
 	-@erase "$(INTDIR)\ConfirmRRQDlg.obj"
 	-@erase "$(INTDIR)\ConfirmRRQDlg.sbr"
 	-@erase "$(INTDIR)\ConfirmWRQDlg.obj"
 	-@erase "$(INTDIR)\ConfirmWRQDlg.sbr"
+	-@erase "$(INTDIR)\PropsACL.obj"
+	-@erase "$(INTDIR)\PropsACL.sbr"
 	-@erase "$(INTDIR)\PropsNetwork.obj"
 	-@erase "$(INTDIR)\PropsNetwork.sbr"
 	-@erase "$(INTDIR)\PropsServer.obj"
@@ -228,8 +236,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 BSC32_FLAGS=/nologo /o"$(OUTDIR)/pumpkin.bsc" 
 BSC32_SBRS= \
+	"$(INTDIR)\ACLTargetCombo.sbr" \
 	"$(INTDIR)\ConfirmRRQDlg.sbr" \
 	"$(INTDIR)\ConfirmWRQDlg.sbr" \
+	"$(INTDIR)\PropsACL.sbr" \
 	"$(INTDIR)\PropsNetwork.sbr" \
 	"$(INTDIR)\PropsServer.sbr" \
 	"$(INTDIR)\PropsSounds.sbr" \
@@ -252,8 +262,10 @@ LINK32=link.exe
 LINK32_FLAGS=/nologo /subsystem:windows /incremental:yes\
  /pdb:"$(OUTDIR)/pumpkin.pdb" /debug /machine:I386 /out:"$(OUTDIR)/pumpkin.exe" 
 LINK32_OBJS= \
+	"$(INTDIR)\ACLTargetCombo.obj" \
 	"$(INTDIR)\ConfirmRRQDlg.obj" \
 	"$(INTDIR)\ConfirmWRQDlg.obj" \
+	"$(INTDIR)\PropsACL.obj" \
 	"$(INTDIR)\PropsNetwork.obj" \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
@@ -305,8 +317,10 @@ ALL : "$(OUTDIR)\pumpkin.exe" "$(OUTDIR)\pumpkin.ex_" "$(OUTDIR)\pumpkin.hlp"\
  "$(OUTDIR)\pumpkin.cnt" "$(OUTDIR)\pumpkin.hl_" "$(OUTDIR)\pumpkin.cn_"
 
 CLEAN : 
+	-@erase "$(INTDIR)\ACLTargetCombo.obj"
 	-@erase "$(INTDIR)\ConfirmRRQDlg.obj"
 	-@erase "$(INTDIR)\ConfirmWRQDlg.obj"
+	-@erase "$(INTDIR)\PropsACL.obj"
 	-@erase "$(INTDIR)\PropsNetwork.obj"
 	-@erase "$(INTDIR)\PropsServer.obj"
 	-@erase "$(INTDIR)\PropsSounds.obj"
@@ -353,8 +367,10 @@ LINK32=link.exe
 LINK32_FLAGS=/nologo /subsystem:windows /incremental:no\
  /pdb:"$(OUTDIR)/pumpkin.pdb" /machine:I386 /out:"$(OUTDIR)/pumpkin.exe" 
 LINK32_OBJS= \
+	"$(INTDIR)\ACLTargetCombo.obj" \
 	"$(INTDIR)\ConfirmRRQDlg.obj" \
 	"$(INTDIR)\ConfirmWRQDlg.obj" \
+	"$(INTDIR)\PropsACL.obj" \
 	"$(INTDIR)\PropsNetwork.obj" \
 	"$(INTDIR)\PropsServer.obj" \
 	"$(INTDIR)\PropsSounds.obj" \
@@ -670,16 +686,16 @@ LINK32_OBJS= \
 # Begin Source File
 
 SOURCE=.\PumpKIN.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_PUMPK=\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
 	
-
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
 
 "$(INTDIR)\PumpKIN.obj" : $(SOURCE) $(DEP_CPP_PUMPK) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -687,6 +703,12 @@ DEP_CPP_PUMPK=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_PUMPK=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PumpKIN.obj" : $(SOURCE) $(DEP_CPP_PUMPK) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -697,6 +719,13 @@ DEP_CPP_PUMPK=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_PUMPK=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PumpKIN.obj" : $(SOURCE) $(DEP_CPP_PUMPK) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -709,13 +738,18 @@ DEP_CPP_PUMPK=\
 # Begin Source File
 
 SOURCE=.\PumpKINDlg.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_PUMPKI=\
+	".\ACLTargetCombo.h"\
 	".\ConfirmRRQDlg.h"\
 	".\ConfirmWRQDlg.h"\
+	".\PropsACL.h"\
 	".\PropsNetwork.h"\
 	".\PropsServer.h"\
 	".\PropsSounds.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\RequestDlg.h"\
 	".\Resolver.h"\
@@ -726,15 +760,30 @@ DEP_CPP_PUMPKI=\
 	".\Trayer.h"\
 	
 
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
-
 "$(INTDIR)\PumpKINDlg.obj" : $(SOURCE) $(DEP_CPP_PUMPKI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_PUMPKI=\
+	".\ACLTargetCombo.h"\
+	".\ConfirmRRQDlg.h"\
+	".\ConfirmWRQDlg.h"\
+	".\PropsACL.h"\
+	".\PropsNetwork.h"\
+	".\PropsServer.h"\
+	".\PropsSounds.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\RequestDlg.h"\
+	".\Resolver.h"\
+	".\Retrier.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	".\Trayer.h"\
+	
 
 "$(INTDIR)\PumpKINDlg.obj" : $(SOURCE) $(DEP_CPP_PUMPKI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -745,6 +794,24 @@ DEP_CPP_PUMPKI=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_PUMPKI=\
+	".\ACLTargetCombo.h"\
+	".\ConfirmRRQDlg.h"\
+	".\ConfirmWRQDlg.h"\
+	".\PropsACL.h"\
+	".\PropsNetwork.h"\
+	".\PropsServer.h"\
+	".\PropsSounds.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\RequestDlg.h"\
+	".\Resolver.h"\
+	".\Retrier.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	".\Trayer.h"\
+	
 
 "$(INTDIR)\PumpKINDlg.obj" : $(SOURCE) $(DEP_CPP_PUMPKI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -822,12 +889,15 @@ BuildCmds= \
 
 SOURCE=.\pumpkin.rc
 DEP_RSC_PUMPKIN=\
+	".\res\down.ico"\
 	".\res\failed.wav"\
 	".\res\finished.wav"\
 	".\res\PumpKIN.ico"\
 	".\res\pumpkin.rc2"\
+	".\res\remove.ico"\
 	".\res\ring.wav"\
 	".\res\rrq.ico"\
+	".\res\up.ico"\
 	".\res\wrq.ico"\
 	".\shared-data\browse-icon.ico"\
 	".\shared-data\klever-background.bmp"\
@@ -951,16 +1021,16 @@ BuildCmds= \
 # Begin Source File
 
 SOURCE=.\PropsServer.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_PROPS=\
 	".\PropsServer.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
 	
-
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
 
 "$(INTDIR)\PropsServer.obj" : $(SOURCE) $(DEP_CPP_PROPS) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -968,6 +1038,12 @@ DEP_CPP_PROPS=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_PROPS=\
+	".\PropsServer.h"\
+	".\pumpkin.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PropsServer.obj" : $(SOURCE) $(DEP_CPP_PROPS) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -978,6 +1054,13 @@ DEP_CPP_PROPS=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_PROPS=\
+	".\PropsServer.h"\
+	".\pumpkin.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PropsServer.obj" : $(SOURCE) $(DEP_CPP_PROPS) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -992,7 +1075,7 @@ DEP_CPP_PROPS=\
 SOURCE=.\PropsNetwork.cpp
 DEP_CPP_PROPSN=\
 	".\PropsNetwork.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
@@ -1029,17 +1112,17 @@ DEP_CPP_PROPSN=\
 # Begin Source File
 
 SOURCE=.\ConfirmRRQDlg.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_CONFI=\
 	".\ConfirmRRQDlg.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
 	
-
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
 
 "$(INTDIR)\ConfirmRRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1047,6 +1130,13 @@ DEP_CPP_CONFI=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_CONFI=\
+	".\ConfirmRRQDlg.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\ConfirmRRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1057,6 +1147,14 @@ DEP_CPP_CONFI=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_CONFI=\
+	".\ConfirmRRQDlg.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\ConfirmRRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1069,17 +1167,17 @@ DEP_CPP_CONFI=\
 # Begin Source File
 
 SOURCE=.\ConfirmWRQDlg.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_CONFIR=\
 	".\ConfirmWRQDlg.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
 	
-
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
 
 "$(INTDIR)\ConfirmWRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFIR) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1087,6 +1185,13 @@ DEP_CPP_CONFIR=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_CONFIR=\
+	".\ConfirmWRQDlg.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\ConfirmWRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFIR) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1097,6 +1202,14 @@ DEP_CPP_CONFIR=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_CONFIR=\
+	".\ConfirmWRQDlg.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\ConfirmWRQDlg.obj" : $(SOURCE) $(DEP_CPP_CONFIR) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1110,7 +1223,7 @@ DEP_CPP_CONFIR=\
 
 SOURCE=.\RequestDlg.cpp
 DEP_CPP_REQUE=\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\RequestDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
@@ -1148,8 +1261,11 @@ DEP_CPP_REQUE=\
 # Begin Source File
 
 SOURCE=.\Resolver.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_RESOL=\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\Resolver.h"\
 	".\shared-code\BellsNWhistles.h"\
@@ -1157,15 +1273,19 @@ DEP_CPP_RESOL=\
 	".\stdafx.h"\
 	
 
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
-
 "$(INTDIR)\Resolver.obj" : $(SOURCE) $(DEP_CPP_RESOL) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_RESOL=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\Resolver.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\Resolver.obj" : $(SOURCE) $(DEP_CPP_RESOL) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1176,6 +1296,14 @@ DEP_CPP_RESOL=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_RESOL=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\Resolver.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\Resolver.obj" : $(SOURCE) $(DEP_CPP_RESOL) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1188,8 +1316,11 @@ DEP_CPP_RESOL=\
 # Begin Source File
 
 SOURCE=.\Retrier.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_RETRI=\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\Retrier.h"\
 	".\shared-code\BellsNWhistles.h"\
@@ -1197,15 +1328,19 @@ DEP_CPP_RETRI=\
 	".\stdafx.h"\
 	
 
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
-
 "$(INTDIR)\Retrier.obj" : $(SOURCE) $(DEP_CPP_RETRI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_RETRI=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\Retrier.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\Retrier.obj" : $(SOURCE) $(DEP_CPP_RETRI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1216,6 +1351,14 @@ DEP_CPP_RETRI=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_RETRI=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\Retrier.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\Retrier.obj" : $(SOURCE) $(DEP_CPP_RETRI) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1228,8 +1371,11 @@ DEP_CPP_RETRI=\
 # Begin Source File
 
 SOURCE=.\Trayer.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_TRAYE=\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
@@ -1237,15 +1383,19 @@ DEP_CPP_TRAYE=\
 	".\Trayer.h"\
 	
 
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
-
 "$(INTDIR)\Trayer.obj" : $(SOURCE) $(DEP_CPP_TRAYE) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
 
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_TRAYE=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	".\Trayer.h"\
+	
 
 "$(INTDIR)\Trayer.obj" : $(SOURCE) $(DEP_CPP_TRAYE) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1256,6 +1406,14 @@ DEP_CPP_TRAYE=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_TRAYE=\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	".\Trayer.h"\
+	
 
 "$(INTDIR)\Trayer.obj" : $(SOURCE) $(DEP_CPP_TRAYE) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1288,17 +1446,17 @@ SOURCE=.\help\pumpkin.cnt
 # Begin Source File
 
 SOURCE=.\PropsSounds.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
 DEP_CPP_PROPSS=\
 	".\PropsSounds.h"\
-	".\PumpKIN.h"\
+	".\pumpkin.h"\
 	".\PumpKINDlg.h"\
 	".\shared-code\BellsNWhistles.h"\
 	".\shared-code\kHelpers.h"\
 	".\stdafx.h"\
 	
-
-!IF  "$(CFG)" == "PumpKIN - Win32 Release"
-
 
 "$(INTDIR)\PropsSounds.obj" : $(SOURCE) $(DEP_CPP_PROPSS) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1306,6 +1464,13 @@ DEP_CPP_PROPSS=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
 
+DEP_CPP_PROPSS=\
+	".\PropsSounds.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PropsSounds.obj" : $(SOURCE) $(DEP_CPP_PROPSS) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
@@ -1316,8 +1481,129 @@ DEP_CPP_PROPSS=\
 
 !ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
 
+DEP_CPP_PROPSS=\
+	".\PropsSounds.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
 
 "$(INTDIR)\PropsSounds.obj" : $(SOURCE) $(DEP_CPP_PROPSS) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ENDIF 
+
+# End Source File
+################################################################################
+# Begin Source File
+
+SOURCE=.\PropsACL.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
+DEP_CPP_PROPSA=\
+	".\ACLTargetCombo.h"\
+	".\PropsACL.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\PropsACL.obj" : $(SOURCE) $(DEP_CPP_PROPSA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
+
+DEP_CPP_PROPSA=\
+	".\ACLTargetCombo.h"\
+	".\PropsACL.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\PropsACL.obj" : $(SOURCE) $(DEP_CPP_PROPSA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+"$(INTDIR)\PropsACL.sbr" : $(SOURCE) $(DEP_CPP_PROPSA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
+
+DEP_CPP_PROPSA=\
+	".\ACLTargetCombo.h"\
+	".\PropsACL.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\PropsACL.obj" : $(SOURCE) $(DEP_CPP_PROPSA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ENDIF 
+
+# End Source File
+################################################################################
+# Begin Source File
+
+SOURCE=.\ACLTargetCombo.cpp
+
+!IF  "$(CFG)" == "PumpKIN - Win32 Release"
+
+DEP_CPP_ACLTA=\
+	".\ACLTargetCombo.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\ACLTargetCombo.obj" : $(SOURCE) $(DEP_CPP_ACLTA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ELSEIF  "$(CFG)" == "PumpKIN - Win32 Debug"
+
+DEP_CPP_ACLTA=\
+	".\ACLTargetCombo.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\ACLTargetCombo.obj" : $(SOURCE) $(DEP_CPP_ACLTA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+"$(INTDIR)\ACLTargetCombo.sbr" : $(SOURCE) $(DEP_CPP_ACLTA) "$(INTDIR)"\
+ "$(INTDIR)\pumpkin.pch"
+
+
+!ELSEIF  "$(CFG)" == "PumpKIN - Win32 Static"
+
+DEP_CPP_ACLTA=\
+	".\ACLTargetCombo.h"\
+	".\pumpkin.h"\
+	".\PumpKINDlg.h"\
+	".\shared-code\BellsNWhistles.h"\
+	".\shared-code\kHelpers.h"\
+	".\stdafx.h"\
+	
+
+"$(INTDIR)\ACLTargetCombo.obj" : $(SOURCE) $(DEP_CPP_ACLTA) "$(INTDIR)"\
  "$(INTDIR)\pumpkin.pch"
 
 

@@ -5,9 +5,11 @@
 #include "PumpKIN.h"
 #include "PumpKINDlg.h"
 
+#include "ACLTargetCombo.h"
 #include "PropsServer.h"
 #include "PropsNetwork.h"
 #include "PropsSounds.h"
+#include "PropsACL.h"
 #include "ConfirmRRQDlg.h"
 #include "ConfirmWRQDlg.h"
 #include "RequestDlg.h"
@@ -79,6 +81,10 @@ END_MESSAGE_MAP()
 CPumpKINDlg::CPumpKINDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CPumpKINDlg::IDD, pParent)
 {
+	m_Listener.m_Daddy = this;
+
+	m_bListen = TRUE;
+
 	m_ListenPort = 69;
 	m_bTFTPSubdirs = TRUE;
 	m_RRQMode = rrqAlwaysConfirm;
@@ -107,6 +113,15 @@ CPumpKINDlg::CPumpKINDlg(CWnd* pParent /*=NULL*/)
 	ASSERT(m_Retrier);
 	m_Trayer = new CTrayer(this);
 	ASSERT(m_Trayer);
+	/* Ensure we're backwards compatible */
+	ASSERT(CPumpKINDlg::rrqGiveAll==0);
+	ASSERT(CPumpKINDlg::rrqAlwaysConfirm==1);
+	ASSERT(CPumpKINDlg::rrqDenyAll==2);
+	ASSERT(CPumpKINDlg::wrqTakeAll==0);
+	ASSERT(CPumpKINDlg::wrqConfirmIfExists==1);
+	ASSERT(CPumpKINDlg::wrqAlwaysConfirm==2);
+	ASSERT(CPumpKINDlg::wrqDenyAll==3);
+	/* -- */
 	LoadSettings();
 }
 
@@ -114,6 +129,7 @@ void CPumpKINDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPumpKINDlg)
+	DDX_Control(pDX, IDC_LISTENING, m_ListenCtl);
 	DDX_Control(pDX, IDC_ABORT, m_AbortCtl);
 	DDX_Control(pDX, IDC_OPTIONS, m_OptionsCtl);
 	DDX_Control(pDX, IDC_LOG, m_Log);
@@ -151,6 +167,8 @@ BEGIN_MESSAGE_MAP(CPumpKINDlg, CDialog)
 	ON_COMMAND(ID_TRAY_OPENFILESFOLDER, OnTrayOpenfilesfolder)
 	ON_WM_DROPFILES()
 	ON_BN_CLICKED(ID_HELP, OnHelp)
+	ON_BN_CLICKED(IDC_LISTENING, OnListening)
+	ON_COMMAND(ID_TRAY_LISTEN, OnTrayListen)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -216,6 +234,8 @@ CRect rc, drc;
 		ShowWindow(SW_SHOW);
 	else
 		ShowWindow(SW_HIDE);
+
+	m_ListenCtl.SetCheck(m_Listener.m_bListen?1:0);
 
 	// CG: The following block was added by the ToolTips component.
 	{
@@ -324,11 +344,10 @@ int CPumpKINDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	m_Listener.m_Daddy=this;
-	if(!m_Listener.Create(m_ListenPort,SOCK_DGRAM)){
+	if(!m_Listener.SetListen(m_bListen)) {
+		m_bListen=FALSE;
 		TRACE0("Failed to create socket\n");
 		AfxMessageBox(IDS_BOX_CANTBIND,MB_OK|MB_ICONEXCLAMATION);
-		return -1;
 	}
 
 	if(!m_Trayer->Create(NULL,"PumpKIN TrayIcon",WS_CHILD,CRect(0,0,0,0),this,0)){
@@ -664,17 +683,22 @@ BOOL CRRQSocket::Create(LPCTSTR localFile,LPCTSTR hostName)
 CString lFile = localFile?localFile:m_FileName;
 	TurnSlashes(lFile,TRUE);
 	UpdateList();
-	if(!localFile){	// Check only if server
+	if(!localFile){	// Check only for incoming requests
 		if(CheckBadRelativeness(m_FileName)){
 			Deny(tftp::errAccessViolation,IDS_TFTP_ERROR_ACCESS);
 			return TRUE;
 		}
-		switch(m_Daddy->m_RRQMode){
+		int atar=m_Daddy->m_aclRules.FindTarget(acl_rule::opRRQ,m_Peer.sin_addr.s_addr);
+		if(atar<0)
+			atar = m_Daddy->m_RRQMode;
+		switch(atar){
 		case CPumpKINDlg::rrqGiveAll:
 			break;
 		case CPumpKINDlg::rrqAlwaysConfirm:
 			if(ConfirmRequest())
 				break;
+		default:
+			TRACE1("Unexpected access target: %d\n",atar);
 		case CPumpKINDlg::rrqDenyAll:
 			Deny(tftp::errAccessViolation,IDS_TFTP_ERROR_ACCESS);
 			return TRUE;
@@ -1107,7 +1131,7 @@ int i = m_Daddy->m_List.FindItem(&lvf);
 	delete this;
 }
 
-void CPumpKINDlg::LogLine(LPCTSTR str)
+void CPumpKINDlg::LogLineToScreen(LPCTSTR str)
 {
 	ASSERT(m_LogLength);
 	while(m_Log.GetCount()>m_LogLength && m_Log.GetCount()!=LB_ERR){
@@ -1163,12 +1187,14 @@ CPropertySheet cps(IDS_TITLE_OPTIONS,this);
 CPropsServer server;
 CPropsNetwork network;
 CPropsSounds sounds;
+CPropsACL acl;
 
 	server.m_RRQMode=m_RRQMode;
 	server.m_TFTPRoot=m_TFTPRoot;
 	server.m_TFTPSubdirs=m_bTFTPSubdirs;
 	server.m_WRQMode=m_WRQMode;
 	server.m_PromptTimeOut=m_PromptTimeOut;
+	server.m_LogFile=m_LogFile;
 
 	network.m_ListenPort=m_ListenPort;
 	network.m_SpeakPort=m_SpeakPort;
@@ -1179,15 +1205,19 @@ CPropsSounds sounds;
 	sounds.m_Success = m_bnwSuccess;
 	sounds.m_Abort = m_bnwAbort;
 
+	acl.m_rulist = m_aclRules;
+
 	cps.AddPage(&server);
 	cps.AddPage(&network);
 	cps.AddPage(&sounds);
+	cps.AddPage(&acl);
 	if(cps.DoModal()==IDOK){
 		m_RRQMode=server.m_RRQMode;
 		m_TFTPRoot=server.m_TFTPRoot;
 		m_bTFTPSubdirs=server.m_TFTPSubdirs;
 		m_WRQMode=server.m_WRQMode;
 		m_PromptTimeOut=server.m_PromptTimeOut;
+		m_LogFile=server.m_LogFile;
 
 		m_ListenPort=network.m_ListenPort;
 		m_SpeakPort=network.m_SpeakPort;
@@ -1197,6 +1227,10 @@ CPropsSounds sounds;
 		m_bnwRequest = sounds.m_Request;
 		m_bnwSuccess = sounds.m_Success;
 		m_bnwAbort = sounds.m_Abort;
+
+		m_aclRules = acl.m_rulist;
+
+		m_lastlogerr.Empty();
 	}
 }
 
@@ -1244,8 +1278,10 @@ CString fn = localFile?ApplyRootGently(localFile):ApplyRoot(lf);
 			m_Rename=exists=TRUE;
 		else
 			m_Rename=exists=FALSE;
-		// *** m_WRQMode only if server transfer
-		switch(m_Daddy->m_WRQMode){
+		int atar=m_Daddy->m_aclRules.FindTarget(acl_rule::opWRQ,m_Peer.sin_addr.s_addr);
+		if(atar<0)
+			atar=m_Daddy->m_WRQMode;
+		switch(atar){
 		case CPumpKINDlg::wrqTakeAll:
 			if(exists){
 				if(!RenameFile(fn)){
@@ -1268,6 +1304,8 @@ CString fn = localFile?ApplyRootGently(localFile):ApplyRoot(lf);
 				}else
 					break;
 			}
+		default:
+			TRACE1("Unexpected access target: %d\n",atar);
 		case CPumpKINDlg::wrqDenyAll:
 			Deny(tftp::errAccessViolation,IDS_TFTP_ERROR_ACCESS);
 			return TRUE;
@@ -1795,6 +1833,7 @@ void CPumpKINDlg::LoadSettings()
 {
 CWinApp *app = AfxGetApp();
 	ASSERT(app);
+	m_bListen=app->GetProfileInt("TFTPSettings","Listen",m_bListen);
 	m_bnwRequest=app->GetProfileString("BellsNWhistles","Request",m_bnwRequest);
 	m_bnwSuccess=app->GetProfileString("BellsNWhistles","Success",m_bnwSuccess);
 	m_bnwAbort=app->GetProfileString("BellsNWhistles","Abort",m_bnwAbort);
@@ -1805,6 +1844,7 @@ CWinApp *app = AfxGetApp();
 	m_RRQMode=app->GetProfileInt("TFTPSettings","RRQMode",m_RRQMode);
 	m_SpeakPort=app->GetProfileInt("TFTPSettings","SpeakPort",m_SpeakPort);
 	m_TFTPRoot=app->GetProfileString("TFTPSettings","TFTPRoot",m_TFTPRoot);
+	m_LogFile=app->GetProfileString("General","LogFile",m_LogFile);
 	m_TFTPTimeOut=CTimeSpan(app->GetProfileInt("TFTPSettings","TFTPTimeout",m_TFTPTimeOut.GetTotalSeconds()));
 	m_BlockSize=app->GetProfileInt("TFTPSettings","TFTPBlockSize",m_BlockSize);
 	m_RetryTimeOut=CTimeSpan(app->GetProfileInt("TFTPSettings","RetryTimeout",m_RetryTimeOut.GetTotalSeconds()));
@@ -1816,12 +1856,14 @@ CWinApp *app = AfxGetApp();
 		m_TFTPRoot.ReleaseBuffer();
 	}
 	::SetCurrentDirectory(m_TFTPRoot);
+	m_aclRules.LoadProfile(app);
 }
 
 void CPumpKINDlg::SaveSettings()
 {
 CWinApp *app = AfxGetApp();
 	ASSERT(app);
+	app->WriteProfileInt("TFTPSettings","Listen",m_bListen);
 	app->WriteProfileString("BellsNWhistles","Request",m_bnwRequest);
 	app->WriteProfileString("BellsNWhistles","Success",m_bnwSuccess);
 	app->WriteProfileString("BellsNWhistles","Abort",m_bnwAbort);
@@ -1832,11 +1874,13 @@ CWinApp *app = AfxGetApp();
 	app->WriteProfileInt("TFTPSettings","RRQMode",m_RRQMode);
 	app->WriteProfileInt("TFTPSettings","SpeakPort",m_SpeakPort);
 	app->WriteProfileString("TFTPSettings","TFTPRoot",m_TFTPRoot);
+	app->WriteProfileString("General","LogFile",m_LogFile);
 	app->WriteProfileInt("TFTPSettings","TFTPTimeout",m_TFTPTimeOut.GetTotalSeconds());
 	app->WriteProfileInt("TFTPSettings","TFTPBlockSize",m_BlockSize);
 	app->WriteProfileInt("TFTPSettings","RetryTimeout",m_RetryTimeOut.GetTotalSeconds());
 	app->WriteProfileInt("TFTPSettings","WRQMode",m_WRQMode);
 	app->WriteProfileInt("UISettings","Visble",m_bShown);
+	m_aclRules.SaveProfile(app);
 }
 
 void CPumpKINDlg::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
@@ -1983,4 +2027,53 @@ void CXferSocket::SetTry(tftp *p)
 void CPumpKINDlg::OnHelp() 
 {
 	AfxGetApp()->WinHelp(0,HELP_FINDER);	
+}
+
+BOOL CListenSocket::SetListen(BOOL b) {
+	ASSERT(m_Daddy);
+	if(b==m_bListen)
+		return TRUE;
+	if(b) {
+		if(!Create(m_Daddy->m_ListenPort,SOCK_DGRAM))
+			return FALSE;
+		return m_bListen=TRUE;
+	}else{
+		Close(); m_bListen=FALSE;
+		return TRUE;
+	}
+}
+
+void CPumpKINDlg::OnListening() 
+{
+	if(!m_Listener.SetListen(m_ListenCtl.GetCheck()==1)) {
+		TRACE0("Failed to create socket\n");
+		AfxMessageBox(IDS_BOX_CANTBIND,MB_OK|MB_ICONEXCLAMATION);
+	}
+	m_ListenCtl.SetCheck(m_Listener.m_bListen?1:0);
+	m_bListen=m_Listener.m_bListen;
+}
+
+void CPumpKINDlg::OnTrayListen() 
+{
+	if(!m_Listener.SetListen(!m_Listener.m_bListen)) {
+		TRACE0("Failed to create socket\n");
+		AfxMessageBox(IDS_BOX_CANTBIND,MB_OK|MB_ICONEXCLAMATION);
+	}
+	m_ListenCtl.SetCheck(m_Listener.m_bListen?1:0);
+	m_bListen=m_Listener.m_bListen;
+}
+
+void CPumpKINDlg::LogLine(LPCTSTR str)
+{
+	LogLineToScreen(str);
+	if(!m_LogFile.IsEmpty()) {
+		if(!Klever::LogRecord((LPCTSTR)m_LogFile,str)) {
+			if(m_lastlogerr!=m_LogFile) {
+				CString tmp;
+				tmp.Format(IDS_LOG_LOGERROR,m_LogFile);
+				LogLineToScreen(tmp);
+				m_lastlogerr=m_LogFile;
+			}
+		}
+	}
 }

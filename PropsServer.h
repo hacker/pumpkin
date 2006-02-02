@@ -17,12 +17,14 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropsServer)
 	enum { IDD = IDD_PROPS_SERVER };
+	CButton	m_LogBrowseCtl;
 	CButton	m_BrowseCtl;
 	CSliderCtrl	m_PromptTimeoutCtl;
 	int		m_RRQMode;
 	CString	m_TFTPRoot;
 	BOOL	m_TFTPSubdirs;
 	int		m_WRQMode;
+	CString	m_LogFile;
 	//}}AFX_DATA
 
 
@@ -39,6 +41,7 @@ protected:
 	//{{AFX_MSG(CPropsServer)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnBrowse();
+	afx_msg void OnLogfileBrowse();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

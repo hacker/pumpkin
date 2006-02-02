@@ -70,6 +70,9 @@ IDI_WRQ                 ICON    DISCARDABLE     "res\\rrq.ico"
 IDI_BROWSE              ICON    DISCARDABLE     "shared-data/browse-icon.ico"
 IDR_MAINFRAME           ICON    DISCARDABLE     "res\\pumpkin.ico"
 IDI_PLAY                ICON    DISCARDABLE     "shared-data/play-icon.ico"
+IDI_UP                  ICON    DISCARDABLE     "res\\up.ico"
+IDI_DOWN                ICON    DISCARDABLE     "res\\down.ico"
+IDI_REMOVE              ICON    DISCARDABLE     "res\\remove.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -82,20 +85,20 @@ CAPTION "About PumpKIN"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,7,17,18,20
-    LTEXT           "PumpKIN, Version 2.6",IDC_STATIC,40,15,119,8,
+    LTEXT           "PumpKIN, Version 2.7",IDC_STATIC,40,15,119,8,
                     SS_NOPREFIX
-    LTEXT           "Copyright © 1997-2005 Klever Group",IDC_STATIC,40,30,
+    LTEXT           "Copyright © 1997-2006 Klever Group",IDC_STATIC,40,30,
                     170,8
     DEFPUSHBUTTON   "OK",IDOK,178,7,32,14,WS_GROUP
     PUSHBUTTON      "http://www.klever.net/",IDC_KLEVERNET,124,53,86,14
 END
 
-IDD_PUMPKIN_DIALOG DIALOGEX 0, 0, 362, 191
+IDD_PUMPKIN_DIALOG DIALOGEX 0, 0, 362, 193
 STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_VISIBLE | WS_CAPTION | 
     WS_SYSMENU
 EXSTYLE WS_EX_ACCEPTFILES | WS_EX_APPWINDOW
 CAPTION "  PumpKIN"
-FONT 8, "MS Sans Serif", 0, 0, 0x1
+FONT 8, "MS Sans Serif"
 BEGIN
     CONTROL         "List1",IDC_CONNECTIONS,"SysListView32",LVS_REPORT | 
                     LVS_AUTOARRANGE | WS_BORDER | WS_TABSTOP,7,7,295,108,
@@ -110,52 +113,60 @@ BEGIN
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "E&xit",IDC_EXIT,305,79,50,17,BS_NOTIFY,WS_EX_CLIENTEDGE
     PUSHBUTTON      "&Help",ID_HELP,305,97,50,17,BS_NOTIFY,WS_EX_CLIENTEDGE
-    LISTBOX         IDC_LOG,7,115,348,69,LBS_USETABSTOPS | LBS_NOSEL | 
+    LISTBOX         IDC_LOG,7,115,348,65,LBS_USETABSTOPS | LBS_NOSEL | 
                     WS_VSCROLL | WS_HSCROLL,WS_EX_DLGMODALFRAME
     PUSHBUTTON      "..",IDCANCEL,0,183,6,7,NOT WS_VISIBLE | NOT WS_TABSTOP
+    CONTROL         "&Server is running",IDC_LISTENING,"Button",
+                    BS_AUTOCHECKBOX | BS_LEFTTEXT | BS_FLAT | WS_TABSTOP,286,
+                    180,69,11,WS_EX_TRANSPARENT | WS_EX_STATICEDGE
 END
 
-IDD_PROPS_SERVER DIALOG DISCARDABLE  0, 0, 210, 154
+IDD_PROPS_SERVER DIALOG DISCARDABLE  0, 0, 300, 201
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Server"
 FONT 8, "MS Sans Serif"
 BEGIN
     GROUPBOX        "TFTP filesystem &root (download path)",IDC_STATIC,7,7,
-                    196,38
-    EDITTEXT        IDC_TFTPROOT,13,16,170,13,ES_AUTOHSCROLL
-    PUSHBUTTON      "&B",IDC_BROWSE,186,16,13,13,BS_ICON
+                    286,38
+    EDITTEXT        IDC_TFTPROOT,13,16,256,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "&B",IDC_BROWSE,274,16,13,13,BS_ICON
     CONTROL         "Allow access to &subdirectories",IDC_TFTPSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,31,111,10
-    GROUPBOX        "Read Request Behavior",IDC_STATIC,7,48,153,42
+    GROUPBOX        "Read Request Behavior",IDC_STATIC,7,48,243,56
     CONTROL         "Give &all files",IDC_RRQ_GIVEALL,"Button",
-                    BS_AUTORADIOBUTTON | BS_NOTIFY | WS_GROUP,13,57,53,10
+                    BS_AUTORADIOBUTTON | BS_NOTIFY | WS_GROUP,13,63,53,10
     CONTROL         "&Prompt before giving file",IDC_RRQ_ALWAYSCONFIRM,
-                    "Button",BS_AUTORADIOBUTTON | BS_NOTIFY,23,67,91,10
+                    "Button",BS_AUTORADIOBUTTON | BS_NOTIFY,43,75,91,10
     CONTROL         "&Deny all requests",IDC_RRQ_DENYALL,"Button",
-                    BS_AUTORADIOBUTTON | BS_NOTIFY,33,77,70,10
-    GROUPBOX        "Write Request Behavior",IDC_STATIC,7,93,172,54,WS_GROUP
+                    BS_AUTORADIOBUTTON | BS_NOTIFY,73,87,70,10
+    GROUPBOX        "Write Request Behavior",IDC_STATIC,7,106,243,56,
+                    WS_GROUP
     CONTROL         "Take a&ll files",IDC_WRQ_TAKEALL,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,103,55,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,116,55,10
     CONTROL         "Prompt if file &exists",IDC_WRQ_PROMPTEXISTING,"Button",
-                    BS_AUTORADIOBUTTON,23,113,73,10
+                    BS_AUTORADIOBUTTON,43,126,73,10
     CONTROL         "Always pro&mpt before accepting file",
-                    IDC_WRQ_ALWAYSCONFIRM,"Button",BS_AUTORADIOBUTTON,33,123,
+                    IDC_WRQ_ALWAYSCONFIRM,"Button",BS_AUTORADIOBUTTON,73,136,
                     139,10
     CONTROL         "D&eny all requests",IDC_WRQ_DENYALL,"Button",
-                    BS_AUTORADIOBUTTON,43,133,70,10
-    CTEXT           "Confirmation &timeout",IDC_STATIC,163,52,40,19,
+                    BS_AUTORADIOBUTTON,103,146,70,10
+    CTEXT           "Confirmation &timeout",IDC_STATIC,253,52,40,19,
                     SS_NOTIFY
     CONTROL         "Slider1",IDC_PROMPTTIMEOUT,"msctls_trackbar32",
-                    TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,182,73,
-                    21,74
+                    TBS_AUTOTICKS | TBS_VERT | TBS_TOP | WS_TABSTOP,272,72,
+                    21,90
+    GROUPBOX        "Log file (leave empty to disable logging to file)",
+                    IDC_STATIC,7,165,286,29
+    EDITTEXT        IDC_LOGFILE,13,175,256,13,ES_AUTOHSCROLL
+    PUSHBUTTON      "",IDC_LOGFILE_BROWSE,274,175,13,13,BS_ICON
 END
 
-IDD_PROPS_NETWORK DIALOG DISCARDABLE  0, 0, 210, 154
+IDD_PROPS_NETWORK DIALOG DISCARDABLE  0, 0, 300, 201
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Network"
 FONT 8, "MS Sans Serif"
 BEGIN
-    GROUPBOX        "UDP Ports",IDC_STATIC,7,7,196,40
+    GROUPBOX        "UDP Ports",IDC_STATIC,7,7,286,40
     RTEXT           "Listen for &incoming requests on port:",IDC_STATIC,13,
                     18,135,8
     EDITTEXT        IDC_LISTENPORT,154,16,40,13,ES_AUTOHSCROLL
@@ -257,26 +268,54 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDVERT,52,32,1,11
 END
 
-IDD_PROPS_SOUNDS DIALOG DISCARDABLE  0, 0, 210, 154
+IDD_PROPS_SOUNDS DIALOG DISCARDABLE  0, 0, 300, 201
 STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Sounds"
 FONT 8, "MS Sans Serif"
 BEGIN
     LTEXT           "&Incoming request:",IDC_STATIC,7,9,57,8
-    COMBOBOX        IDC_RING,70,7,103,100,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_RING,70,7,188,100,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "browse",IDC_RING_BROWSE,175,7,13,13,BS_ICON
-    PUSHBUTTON      "play",IDC_RING_PLAY,190,7,13,13,BS_ICON
+    PUSHBUTTON      "browse",IDC_RING_BROWSE,263,7,13,13,BS_ICON
+    PUSHBUTTON      "play",IDC_RING_PLAY,280,7,13,13,BS_ICON
     LTEXT           "xfer &finished:",IDC_STATIC,7,25,57,8
-    COMBOBOX        IDC_FINISHED,70,22,103,100,CBS_DROPDOWN | 
+    COMBOBOX        IDC_FINISHED,70,22,188,100,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "browse",IDC_FINISHED_BROWSE,175,22,13,13,BS_ICON
-    PUSHBUTTON      "play",IDC_FINISHED_PLAY,190,22,13,13,BS_ICON
+    PUSHBUTTON      "browse",IDC_FINISHED_BROWSE,263,22,13,13,BS_ICON
+    PUSHBUTTON      "play",IDC_FINISHED_PLAY,280,22,13,13,BS_ICON
     LTEXT           "xfer &aborted:",IDC_STATIC,7,40,57,8
-    COMBOBOX        IDC_ABORTED,70,37,103,100,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
+    COMBOBOX        IDC_ABORTED,70,37,188,100,CBS_DROPDOWN | CBS_AUTOHSCROLL | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "browse",IDC_ABORTED_BROWSE,175,37,13,13,BS_ICON
-    PUSHBUTTON      "play",IDC_ABORTED_PLAY,190,37,13,13,BS_ICON
+    PUSHBUTTON      "browse",IDC_ABORTED_BROWSE,263,37,13,13,BS_ICON
+    PUSHBUTTON      "play",IDC_ABORTED_PLAY,280,37,13,13,BS_ICON
+END
+
+IDD_PROPS_ACL DIALOG DISCARDABLE  0, 0, 300, 201
+STYLE WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Access Lists"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "List1",IDC_ACL_LIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,7,258,110
+    PUSHBUTTON      "&Up",IDC_ACL_UP,273,7,20,30,BS_ICON | BS_CENTER | 
+                    BS_VCENTER
+    PUSHBUTTON      "&Down",IDC_ACL_DOWN,273,87,20,30,BS_ICON | BS_CENTER | 
+                    BS_VCENTER
+    PUSHBUTTON      "&Remove",IDC_ACL_REMOVE,273,47,20,30,BS_ICON | 
+                    BS_CENTER | BS_VCENTER
+    LTEXT           "If",IDC_STATIC,13,128,8,8
+    COMBOBOX        IDC_ACL_XFER,21,125,48,67,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "request comes from the address in the network",
+                    IDC_STATIC,71,128,122,8
+    EDITTEXT        IDC_ACL_ADDR,47,143,80,12,ES_AUTOHSCROLL
+    LTEXT           "with netmask",IDC_STATIC,129,145,41,8
+    EDITTEXT        IDC_ACL_NETMASK,173,143,80,12,ES_AUTOHSCROLL
+    LTEXT           "then",IDC_STATIC,124,160,15,8
+    COMBOBOX        IDC_ACL_RULE,143,158,123,117,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Add new rule",IDC_ACL_ADD,7,178,130,16
+    PUSHBUTTON      "&Replace rule",IDC_ACL_REPLACE,152,178,130,16
 END
 
 
@@ -287,8 +326,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,6,0,0
- PRODUCTVERSION 2,6,0,0
+ FILEVERSION 2,7,0,0
+ PRODUCTVERSION 2,7,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -305,13 +344,13 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Klever Group (http://www.klever.net/)\0"
             VALUE "FileDescription", "PumpKIN, tftp client/daemon\0"
-            VALUE "FileVersion", "2, 6, 0, 0\0"
+            VALUE "FileVersion", "2, 7, 0, 0\0"
             VALUE "InternalName", "PUMPKIN\0"
-            VALUE "LegalCopyright", "Copyright © 1997-2005 Klever Group (http://www.klever.net)\0"
+            VALUE "LegalCopyright", "Copyright © 1997-2006 Klever Group (http://www.klever.net)\0"
             VALUE "LegalTrademarks", "Klever Group (http://www.klever.net/)\0"
             VALUE "OriginalFilename", "PUMPKIN.EXE\0"
             VALUE "ProductName", "PumpKIN\0"
-            VALUE "ProductVersion", "2, 6, 0, 0\0"
+            VALUE "ProductVersion", "2, 7, 0, 0\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -344,24 +383,24 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 355
         TOPMARGIN, 7
-        BOTTOMMARGIN, 184
+        BOTTOMMARGIN, 186
         HORZGUIDE, 115
     END
 
     IDD_PROPS_SERVER, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 203
+        RIGHTMARGIN, 293
         TOPMARGIN, 7
-        BOTTOMMARGIN, 147
+        BOTTOMMARGIN, 194
     END
 
     IDD_PROPS_NETWORK, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 203
+        RIGHTMARGIN, 293
         TOPMARGIN, 7
-        BOTTOMMARGIN, 147
+        BOTTOMMARGIN, 194
     END
 
     IDD_CONFIRM_RRQ, DIALOG
@@ -391,9 +430,19 @@ BEGIN
     IDD_PROPS_SOUNDS, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 203
+        RIGHTMARGIN, 293
         TOPMARGIN, 7
-        BOTTOMMARGIN, 147
+        BOTTOMMARGIN, 194
+    END
+
+    IDD_PROPS_ACL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 293
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 194
+        HORZGUIDE, 117
+        HORZGUIDE, 125
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -439,6 +488,25 @@ BEGIN
     0
 END
 
+IDD_PROPS_ACL DLGINIT
+BEGIN
+    IDC_ACL_XFER, 0x403, 5, 0
+0x6572, 0x6461, "\000" 
+    IDC_ACL_XFER, 0x403, 6, 0
+0x7277, 0x7469, 0x0065, 
+    IDC_ACL_RULE, 0x403, 12, 0
+0x6361, 0x6563, 0x7470, 0x6620, 0x6c69, 0x0065, 
+    IDC_ACL_RULE, 0x403, 33, 0
+0x6361, 0x6563, 0x7470, 0x6120, 0x646e, 0x7220, 0x6e65, 0x6d61, 0x2065, 
+0x6669, 0x6620, 0x6c69, 0x2065, 0x7865, 0x7369, 0x7374, "\000" 
+    IDC_ACL_RULE, 0x403, 12, 0
+0x6572, 0x656a, 0x7463, 0x6620, 0x6c69, 0x0065, 
+    IDC_ACL_RULE, 0x403, 31, 0
+0x6166, 0x6c6c, 0x6162, 0x6b63, 0x7420, 0x206f, 0x6874, 0x2065, 0x6c67, 
+0x626f, 0x6c61, 0x7320, 0x7465, 0x6974, 0x676e, "\000" 
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -452,6 +520,7 @@ BEGIN
         MENUITEM "&Send File",                  ID_TRAY_SENDFILE
         MENUITEM "F&etch file",                 ID_TRAY_FETCHFILE
         MENUITEM "&Options",                    ID_TRAY_OPTIONS
+        MENUITEM "&Listen to requests",         ID_TRAY_LISTEN
         MENUITEM "Show &PumpKIN Window",        ID_TRAY_SHOWPUMPKINWINDOW
         MENUITEM "Open &Files Folder",          ID_TRAY_OPENFILESFOLDER
         MENUITEM SEPARATOR
@@ -533,6 +602,7 @@ BEGIN
     ID_TRAY_OPTIONS         "Set PumpKIN options"
     ID_TRAY_SHOWPUMPKINWINDOW "Show main window"
     ID_TRAY_OPENFILESFOLDER "Explore TFTP root folder"
+    ID_TRAY_LISTEN          "Listen for incoming requests"
 END
 
 STRINGTABLE DISCARDABLE 
@@ -572,11 +642,20 @@ BEGIN
     IDS_FILTER_WAV          "Sound Files (*.wav)|*.wav||"
     IDS_TITLE_WAV           "Select sound.."
     IDS_BOX_CANTBIND        "Failed to create listening socket. The port may be in use by another application."
+    IDS_NO_XFER_OP          "No request type specified."
+    IDS_INVALID_IP          "Invalid IP address."
+    IDS_INVALID_NETMASK     "Invalid netmask."
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     AFX_IDS_APP_TITLE       "PUMPKIN"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_INVALID_RULE        "Invalid access rule."
+    IDS_LOG_LOGERROR        "Error logging to '%s'"
 END
 
 #endif    // English (U.S.) resources

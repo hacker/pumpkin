@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(CTrayer, CWnd)
 	ON_COMMAND(ID_TRAY_OPTIONS, OnTrayOptions)
 	ON_COMMAND(ID_TRAY_SENDFILE, OnTraySendfile)
 	ON_COMMAND(ID_TRAY_SHOWPUMPKINWINDOW, OnTrayShowpumpkinwindow)
+	ON_COMMAND(ID_TRAY_LISTEN, OnTrayListen)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -65,6 +66,7 @@ LRESULT CTrayer::OnTray(WPARAM wP,LPARAM lP)
 			m_inMenu++;
 			SetForegroundWindow();
 			popUp->CheckMenuItem(ID_TRAY_SHOWPUMPKINWINDOW,MF_BYCOMMAND|(IsWindowVisible()?MF_CHECKED:MF_UNCHECKED));
+			popUp->CheckMenuItem(ID_TRAY_LISTEN,MF_BYCOMMAND|(m_Daddy->m_Listener.m_bListen?MF_CHECKED:MF_UNCHECKED));
 			popUp->TrackPopupMenu(TPM_RIGHTALIGN|TPM_LEFTBUTTON|TPM_RIGHTBUTTON,pt.x,pt.y,this);
 			m_inMenu--;
 			SendMessage(WM_NULL);
@@ -115,4 +117,9 @@ void CTrayer::OnTraySendfile()
 void CTrayer::OnTrayShowpumpkinwindow() 
 {
 	m_Daddy->SendMessage(WM_COMMAND,ID_TRAY_SHOWPUMPKINWINDOW);
+}
+
+void CTrayer::OnTrayListen() 
+{
+	m_Daddy->SendMessage(WM_COMMAND,ID_TRAY_LISTEN);
 }

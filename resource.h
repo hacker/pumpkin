@@ -73,12 +73,21 @@
 #define IDS_OTALXAT                     149
 #define IDI_PLAY                        149
 #define IDS_TFTP_ERROR_TSIZE            150
+#define IDD_PROPS_ACL                   150
 #define IDS_TFTP_ERROR_BSIZE            151
 #define IDS_TFTP_ERROR_TOUT             152
+#define IDI_UP                          152
 #define IDS_SELECT_TFTPROOT             153
+#define IDI_DOWN                        153
 #define IDS_FILTER_WAV                  154
+#define IDI_REMOVE                      154
 #define IDS_TITLE_WAV                   155
 #define IDS_BOX_CANTBIND                156
+#define IDS_NO_XFER_OP                  157
+#define IDS_INVALID_IP                  158
+#define IDS_INVALID_NETMASK             159
+#define IDS_INVALID_RULE                160
+#define IDS_LOG_LOGERROR                161
 #define IDC_KLEVERNET                   1000
 #define IDC_CONNECTIONS                 1001
 #define IDC_LOG                         1003
@@ -121,12 +130,25 @@
 #define IDC_RING                        1041
 #define IDC_RING_BROWSE                 1042
 #define IDC_RING_PLAY                   1043
+#define IDC_ACL_LIST                    1043
 #define IDC_FINISHED                    1044
+#define IDC_ACL_UP                      1044
 #define IDC_FINISHED_BROWSE             1045
+#define IDC_ACL_DOWN                    1045
 #define IDC_FINISHED_PLAY               1046
+#define IDC_ACL_REMOVE                  1046
 #define IDC_ABORTED                     1047
+#define IDC_ACL_ADDR                    1047
 #define IDC_ABORTED_BROWSE              1048
+#define IDC_ACL_RULE                    1048
 #define IDC_ABORTED_PLAY                1049
+#define IDC_ACL_NETMASK                 1049
+#define IDC_ACL_ADD                     1050
+#define IDC_ACL_XFER                    1051
+#define IDC_ACL_REPLACE                 1052
+#define IDC_LISTENING                   1052
+#define IDC_LOGFILE                     1053
+#define IDC_LOGFILE_BROWSE              1054
 #define ID_TRAY_HELP                    32771
 #define ID_TRAY_ABOUTPUMPKIN            32772
 #define ID_TRAY_EXIT                    32773
@@ -135,14 +157,15 @@
 #define ID_TRAY_OPTIONS                 32776
 #define ID_TRAY_SHOWPUMPKINWINDOW       32777
 #define ID_TRAY_OPENFILESFOLDER         32778
+#define ID_TRAY_LISTEN                  32780
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        150
-#define _APS_NEXT_COMMAND_VALUE         32780
-#define _APS_NEXT_CONTROL_VALUE         1043
+#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_COMMAND_VALUE         32781
+#define _APS_NEXT_CONTROL_VALUE         1055
 #define _APS_NEXT_SYMED_VALUE           102
 #endif
 #endif

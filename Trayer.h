@@ -41,6 +41,7 @@ protected:
 	afx_msg void OnTrayOptions();
 	afx_msg void OnTraySendfile();
 	afx_msg void OnTrayShowpumpkinwindow();
+	afx_msg void OnTrayListen();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

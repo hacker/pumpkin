@@ -18,7 +18,7 @@ K{\footnote about}
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 {\b {\i Enjoy!}}
 {
-\par\pard\plain\sb360\sa120 \f1\fs16 Copyright (c) 1997-2005 {\uldb\cf0 Klever Group (http://www.klever.net/)}{\v %!ExecFile("http://www.klever.net/")}
+\par\pard\plain\sb360\sa120 \f1\fs16 Copyright (c) 1997-2006 {\uldb\cf0 Klever Group (http://www.klever.net/)}{\v %!ExecFile("http://www.klever.net/")}
 \par\qj\sb120\sa120Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 \par The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 \par \sa360 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -28,6 +28,9 @@ K{\footnote about}
 \pard\plain
 #{\footnote News}
 ${\footnote What's New}
+\par\pard\plain\f1\fs24\qc\cf2\b 2.7 - February 1st, 2006
+\par\pard\plain\fi0\li0\f1\fs18 \bullet  Added acess lists based on request IP address and TFTP opcode for automating access policy
+\par\pard\plain\fi0\li0\f1\fs18 \bullet  Added possibility to start/stop TFTP server, while keeping client functionality intact
 \par\pard\plain\f1\fs24\qc\cf2\b 2.6 - August 6th, 2005
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  more robust solution to the backslash/slash dilemma
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  A bit more elaborate error reporting
@@ -112,10 +115,18 @@ ${\footnote Server Options}
 \page
 
 \pard\plain\keepn
-#{\footnote SoundsOptoins}
+#{\footnote SoundsOptions}
 ${\footnote Sounds Options}
 { \f1\fs18\b\sb120 Sounds}
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 You can customize {\b PumpKIN} sounds notifications here. There are three customizable sounds defined - {\b Incoming request}, which notifies you about incoming request prompt if you're set to be prompted whenever incoming request occurs. {\b xfer Aborted} - which happens to sound every time transfer is interrupted for whatever reason - time out, explicit kill, denied access, etc. {\b xfer Finished} means that your file was successfully transmitted.
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 You can select any {\b .wav} file or one of the predefined sounds from the dropdown list.
+\page
+
+\pard\plain\keepn
+#{\footnote ACL}
+${\footnote Access Lists}
+{ \f1\fs18\b\sb120 Access Lists}
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 You can slightly automate your access policies by setting up read/write request behavior for different incoming requests.
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 The rule consists of {\b request type}, source networke ({\b ip} and {\b netmask}) and {\b action} to take (see also {\uldb Server Options}{\v ServerOptions}).
 \page
 }

@@ -131,8 +131,8 @@ IDI_ICON                ICON    DISCARDABLE     "../shared-data/install-icon.ico
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,6,0,0
- PRODUCTVERSION 2,6,0,0
+ FILEVERSION 2,7,0,0
+ PRODUCTVERSION 2,7,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -149,13 +149,13 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "Klever Group (http://www.klever.net/)\0"
             VALUE "FileDescription", "INSTALL: PumpKIN, tftp client/daemon\0"
-            VALUE "FileVersion", "2, 6, 0, 0\0"
+            VALUE "FileVersion", "2, 7, 0, 0\0"
             VALUE "InternalName", "INSTALL\0"
-            VALUE "LegalCopyright", "Copyright © 1997-2005 Klever Group (http://www.klever.net/)\0"
+            VALUE "LegalCopyright", "Copyright © 1997-2006 Klever Group (http://www.klever.net/)\0"
             VALUE "LegalTrademarks", "Klever Group (http://www.klever.net/)\0"
             VALUE "OriginalFilename", "INSTALL.EXE\0"
             VALUE "ProductName", "PumpKIN\0"
-            VALUE "ProductVersion", "2, 6, 0, 0\0"
+            VALUE "ProductVersion", "2, 7, 0, 0\0"
         END
     END
     BLOCK "VarFileInfo"

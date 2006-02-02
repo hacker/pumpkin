@@ -113,11 +113,158 @@ public:
 #define	tftpHdrSize	(sizeof(tftp)-sizeof(tftp::tftpPacket))
 #define	tftpSlackSize sizeof(tftp::tftpLength)
 
+struct acl_rule {
+ enum {
+	 opRRQ=tftp::opRRQ, opWRQ=tftp::opWRQ
+ };
+ int op;
+ DWORD addr, mask;
+ enum {
+	rrqGrant=0, rrqPrompt, rrqDeny,
+	rrqRules,
+	rrqNone=-1
+ };
+ enum {
+	 wrqGrant=0, wrqPromptIfExists, wrqPrompt, wrqDeny,
+	 wrqRules,
+	 wrqNone=-1
+ };
+ int target;
+
+ acl_rule()
+	 : op(-1), addr(0), mask(0), target(-1) { }
+ acl_rule(int o,DWORD a,DWORD m,int t)
+	 : op(o), addr(a), mask(m), target(t) { }
+ acl_rule(const acl_rule& s)
+	 : op(s.op), addr(s.addr), mask(s.mask), target(s.target) { }
+
+ BOOL IsValid() {
+	 if(op==opRRQ) {
+		 if(target<rrqNone || target>=rrqRules)
+			 return FALSE;
+	 }else if(op==opWRQ) {
+		 if(target<wrqNone || target>=wrqRules)
+			 return FALSE;
+	 }else
+		 return FALSE;
+	 return TRUE;
+ }
+
+ BOOL IsMatch(int o,DWORD a) {
+	 if(o!=op) return FALSE;
+	 if( (a&mask) != (addr&mask)) return FALSE;
+	 return TRUE;
+ }
+
+ CString str_addr() {
+	 return inet_ntoa(*(struct in_addr*)&addr);
+ }
+ CString str_mask() {
+	 return inet_ntoa(*(struct in_addr*)&mask);
+ }
+ CString str_target() {
+	 if(op==opRRQ) {
+		 switch(target) {
+		 case rrqNone: return "fallback";
+		 case rrqGrant: return "grant";
+		 case rrqPrompt: return "prompt";
+		 case rrqDeny: return "deny";
+		 default: return "?";
+		 }
+	 }else if(op==opWRQ) {
+		 switch(target) {
+		 case wrqNone: return "fallback";
+		 case wrqGrant: return "grant";
+		 case wrqPromptIfExists: return "prompt if exists";
+		 case wrqPrompt: return "prompt";
+		 case wrqDeny: return "deny";
+		 default: return "?";
+		 }
+	 }else
+		 return "?";
+ }
+
+ void SaveProfile(CWinApp* app,int i) {
+	 CString n; n.Format("%d",i);
+	 app->WriteProfileInt("ACL","op_"+n,op);
+	 app->WriteProfileString("ACL","addr_"+n,str_addr());
+	 app->WriteProfileString("ACL","mask_"+n,str_mask());
+	 app->WriteProfileInt("ACL","target_"+n,target);
+ }
+
+ void LoadProfile(CWinApp* app,int i) {
+	 CString n; n.Format("%d",i);
+	 op=app->GetProfileInt("ACL","op_"+n,-1);
+	 addr=inet_addr(app->GetProfileString("ACL","addr_"+n));
+	 mask=inet_addr(app->GetProfileString("ACL","mask_"+n));
+	 target=app->GetProfileInt("ACL","target_"+n,-1);
+ }
+
+};
+
+class acl_rules_t : public CArray<acl_rule,acl_rule&> {
+public:
+
+	acl_rules_t& operator=(const acl_rules_t& s) {
+		// Copy(s); XXX: unsuprisingly, there's a bug in MFC Copy, *pDst++=*pSrc (no ++ for Src)
+		RemoveAll();
+		int ns = s.GetSize();
+		SetSize(ns);
+		for(int i=0;i<ns;++i)
+			m_pData[i]=s.m_pData[i];
+		return *this;
+	}
+
+	int AppendRule(acl_rule& r) {
+		return Add(r);
+	}
+
+	void DeleteRule(int r) {
+		RemoveAt(r);
+	}
+
+	int FindRule(int op,DWORD ip) {
+		for(int i=0;i<GetSize();++i)
+			if(m_pData[i].IsMatch(op,ip))
+				return i;
+		return -1;
+	}
+
+	int FindTarget(int op,DWORD ip) {
+		int r=FindRule(op,ip);
+		if(r<0) return -1;
+		return m_pData[r].target;
+	}
+
+	void SaveProfile(CWinApp* app) {
+		int s=GetSize();
+		for(int i=0;i<s;++i)
+			m_pData[i].SaveProfile(app,i);
+		app->WriteProfileInt("ACL","rules",s);
+	}
+	void LoadProfile(CWinApp* app) {
+		RemoveAll();
+		int s=app->GetProfileInt("ACL","rules",0);
+		for(int i=0;i<s;++i) {
+			acl_rule r;
+			r.LoadProfile(app,i);
+			if(r.IsValid())
+				Add(r);
+		}
+	}
+};
+
 class CPumpKINDlg;
 class CListenSocket : public CAsyncSocket	{
 public:
-	virtual void OnReceive(int nErrorCode);
 	CPumpKINDlg* m_Daddy;
+	BOOL m_bListen;
+
+	CListenSocket()
+		: m_bListen(FALSE), m_Daddy(0) { }
+
+	BOOL SetListen(BOOL b);
+	virtual void OnReceive(int nErrorCode);
 };
 
 typedef	CList<tftp*,tftp*>	CTFTPList;
@@ -220,6 +367,11 @@ class CPumpKINDlg : public CDialog
 {
 // Construction
 public:
+	CString m_lastlogerr;
+	void LogLine(LPCTSTR str);
+	CString m_LogFile;
+	BOOL m_bListen;
+	acl_rules_t m_aclRules;
 	CString m_bnwRequest;
 	CString m_bnwSuccess;
 	CString m_bnwAbort;
@@ -240,7 +392,8 @@ public:
 	UINT m_SpeakPort;
 	void LogLine(UINT msgID);
 	CTimeMap m_LogTimes;
-	void LogLine(LPCTSTR str);
+	void LogLineToFile(LPCTSTR str);
+	void LogLineToScreen(LPCTSTR str);
 	int m_LogLength;
 	enum	{
 		subitemFile=0, subitemType, subitemPeer, subitemBytes, subitemTSize
@@ -251,15 +404,19 @@ public:
 	CTIDMap m_Xfers;
 	CTimeSpan m_TFTPTimeOut;
 	enum	{
-		rrqGiveAll=0,
-		rrqAlwaysConfirm,
-		rrqDenyAll
+		rrqGiveAll=acl_rule::rrqGrant,
+		rrqAlwaysConfirm=acl_rule::rrqPrompt,
+		rrqDenyAll=acl_rule::rrqDeny,
+		rrqFallback=acl_rule::rrqNone,
+		rrqGrant=rrqGiveAll, rrqDeny=rrqDenyAll, rrqPrompt=rrqAlwaysConfirm
 	};
 	enum	{
-		wrqTakeAll=0,
-		wrqConfirmIfExists,
-		wrqAlwaysConfirm,
-		wrqDenyAll
+		wrqTakeAll=acl_rule::wrqGrant,
+		wrqConfirmIfExists=acl_rule::wrqPromptIfExists,
+		wrqAlwaysConfirm=acl_rule::wrqPrompt,
+		wrqDenyAll=acl_rule::wrqDeny,
+		wrqFallback=acl_rule::wrqNone,
+		wrqGrant=wrqTakeAll,wrqDeny=wrqDenyAll, wrqPrompt=wrqAlwaysConfirm
 	};
 	UINT m_RRQMode;
 	UINT m_WRQMode;
@@ -273,6 +430,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPumpKINDlg)
 	enum { IDD = IDD_PUMPKIN_DIALOG };
+	CButton	m_ListenCtl;
 	CButton	m_AbortCtl;
 	CButton	m_OptionsCtl;
 	CListBox	m_Log;
@@ -310,6 +468,7 @@ protected:
 	afx_msg void OnAbort();
 	afx_msg void OnClose();
 	afx_msg void OnTrayShowpumpkinwindow();
+	afx_msg void OnTrayListen();
 	afx_msg void OnTrayExit();
 	afx_msg void OnTrayAboutpumpkin();
 	afx_msg void OnTrayFetchfile();
@@ -322,6 +481,7 @@ protected:
 	afx_msg void OnDropFiles(HDROP hDropInfo);
 	virtual void OnCancel();
 	afx_msg void OnHelp();
+	afx_msg void OnListening();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

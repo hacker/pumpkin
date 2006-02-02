@@ -5,10 +5,14 @@
   <p><kin>PumpKIN</kin> is a program designed to send and receive files over the net while having <kin href="http://kin.klever.net/T42/">T42</kin> or <product>Wintalk</product> session running using <term>TFTP</term> (<rfc num="1350"/>) protocol. It includes full-functional <term>TFTP</term> server/client so it may be useful for maintaining <a href="http://www.cisco.com/">CISCO</a> routers and other network equipment.</p>
   <p/>
   <p><b><i>Enjoy!</i></b></p>
-  <license years="1997-2005"/>
+  <license years="1997-2006"/>
   <credist/>
  </topic>
  <topic id="News" title="What's New">
+  <newsfor version="2.7" date="">
+   <ni>Added acess lists based on request IP address and TFTP opcode for automating access policy</ni>
+   <ni>Added possibility to start/stop TFTP server, while keeping client functionality intact</ni>
+  </newsfor>
   <newsfor version="2.6" date="August 6th, 2005">
    <ni>more robust solution to the backslash/slash dilemma</ni>
    <ni>A bit more elaborate error reporting</ni>
@@ -36,6 +40,7 @@
   <p>To Abort transfer(s) currently in progress - select transfer(s) you want to terminate in the list and click <b>Abort xfer</b> button.</p>
   <p>You may want to hide <kin>PumpKIN</kin> window and leave it as a tray icon only. Just click the <image source="pumpkin.bmp"/> icon in the tray or simply close the window.</p>
   <p>Use <a href="#Options">Options</a> button to set <kin>PumpKIN</kin> options.</p>
+  <p>You can start and stop <kin>PumpKIN</kin>'s <term>TFTP</term> server by checking and unchecking the <b>Server is running</b> checkbox in the lower right corner of main <kin>PumpKIN</kin> window.</p>
  </topic>
  <topic id="ConfirmRRQ" title="Confirm Read Request Dialog">
   <heading scroll="no">Confirm Read Request Dialog</heading>
@@ -83,9 +88,17 @@
    <li><a name="ConfirmationTimeOut"/><b>Confirmation timeout</b> - this is the time <kin>PumpKIN</kin> will wait for you to accept or deny request before it will give up and take default action which is always deny.</li>
   </ul>
  </topic>
- <topic id="SoundsOptoins" title="Sounds Options">
+ <topic id="SoundsOptions" title="Sounds Options">
   <heading scroll="no">Sounds</heading>
   <p>You can customize <kin>PumpKIN</kin> sounds notifications here. There are three customizable sounds defined - <b>Incoming request</b>, which notifies you about incoming request prompt if you're set to be prompted whenever incoming request occurs. <b>xfer Aborted</b> - which happens to sound every time transfer is interrupted for whatever reason - time out, explicit kill, denied access, etc. <b>xfer Finished</b> means that your file was successfully transmitted.</p>
   <p>You can select any <b>.wav</b> file or one of the predefined sounds from the dropdown list.</p>
+ </topic>
+ <topic id="ACL" title="Access Lists">
+  <heading scroll="no">Access Lists</heading>
+  <p>You can slightly automate your access policies by setting up read/write request behavior for different incoming requests.</p>
+  <p>The rule consists of <b>request type</b>, source network (<b>ip</b> and <b>netmask</b>) and <b>action</b> to take (see also <a href="#ServerOptions">Server Options</a>).</p>
+  <p>When <kin>PumpKIN</kin> receives request it goes through the list of rules and bases its decision on the first matching rule. To rearrange order of rules, select the rule you wish to move and use up and down arrows buttons on the right. To remove rule, use the cross button.</p>
+  <p>To add a new rule fill in the information about <b>request type</b>, source <b>address</b> and <b>netmask</b> and desired action. Then click on the 'Add new rule' button.</p>
+  <p>If you wish to amend the rule, select it in the rules list, change parameters below and click the 'Replace rule' button.</p>
  </topic>
 </winhelp>
