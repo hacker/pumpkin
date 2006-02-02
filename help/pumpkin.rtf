@@ -28,9 +28,10 @@ K{\footnote about}
 \pard\plain
 #{\footnote News}
 ${\footnote What's New}
-\par\pard\plain\f1\fs24\qc\cf2\b 2.7 - February 1st, 2006
+\par\pard\plain\f1\fs24\qc\cf2\b 2.7 - 
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  Added acess lists based on request IP address and TFTP opcode for automating access policy
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  Added possibility to start/stop TFTP server, while keeping client functionality intact
+\par\pard\plain\fi0\li0\f1\fs18 \bullet  Logging to file
 \par\pard\plain\f1\fs24\qc\cf2\b 2.6 - August 6th, 2005
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  more robust solution to the backslash/slash dilemma
 \par\pard\plain\fi0\li0\f1\fs18 \bullet  A bit more elaborate error reporting
@@ -57,6 +58,7 @@ ${\footnote Using PumpKIN}
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 To Abort transfer(s) currently in progress - select transfer(s) you want to terminate in the list and click {\b Abort xfer} button.
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 You may want to hide {\b PumpKIN} window and leave it as a tray icon only. Just click the \{bmct pumpkin.bmp\} icon in the tray or simply close the window.
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 Use {\uldb Options}{\v Options} button to set {\b PumpKIN} options.
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 You can start and stop {\b PumpKIN}'s {\i TFTP} server by checking and unchecking the {\b Server is running} checkbox in the lower right corner of main {\b PumpKIN} window.
 \page
 
 \pard\plain\keepn
@@ -111,7 +113,8 @@ ${\footnote Server Options}
 \par \fi0\li0 \bullet   {\b Allow access to subdirectories} - specifies whether you want allow access to the whole subtree of {\b TFTP Root} or only to the directory itself.
 \par \fi0\li0 \bullet   {\b Read Request Behavior} - You may choose to automatically agree to give all files requested, to be prompted to confirm these operations, or to deny all requests as if you're not even here.
 \par \fi0\li0 \bullet   {\b Write Request Behavior} - You may chose to {\b take all files} ({\i not recommended}), to {\b prompt only if file exists already}, {\b Always prompt} or {\b Deny all requests}.
-\par \fi0\li0 \bullet   {#{\footnote ConfirmationTimeOut}}{\b Confirmation timeout} - this is the time {\b PumpKIN} will wait for you to accept or deny request before it will give up and take default action which is always deny.\pard
+\par \fi0\li0 \bullet   {#{\footnote ConfirmationTimeOut}}{\b Confirmation timeout} - this is the time {\b PumpKIN} will wait for you to accept or deny request before it will give up and take default action which is always deny.
+\par \fi0\li0 \bullet   {\b Log file} - If you want to enable logging to file, set the destination file here.\pard
 \page
 
 \pard\plain\keepn
@@ -127,6 +130,9 @@ ${\footnote Sounds Options}
 ${\footnote Access Lists}
 { \f1\fs18\b\sb120 Access Lists}
 \par\sa120\sb120\qj\pard \f1\fs18\sb120 You can slightly automate your access policies by setting up read/write request behavior for different incoming requests.
-\par\sa120\sb120\qj\pard \f1\fs18\sb120 The rule consists of {\b request type}, source networke ({\b ip} and {\b netmask}) and {\b action} to take (see also {\uldb Server Options}{\v ServerOptions}).
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 The rule consists of {\b request type}, source network ({\b ip} and {\b netmask}) and {\b action} to take (see also {\uldb Server Options}{\v ServerOptions}).
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 When {\b PumpKIN} receives request it goes through the list of rules and bases its decision on the first matching rule. To rearrange order of rules, select the rule you wish to move and use up and down arrows buttons on the right. To remove rule, use the cross button.
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 To add a new rule fill in the information about {\b request type}, source {\b address} and {\b netmask} and desired action. Then click on the 'Add new rule' button.
+\par\sa120\sb120\qj\pard \f1\fs18\sb120 If you wish to amend the rule, select it in the rules list, change parameters below and click the 'Replace rule' button.
 \page
 }

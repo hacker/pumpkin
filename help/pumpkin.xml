@@ -12,6 +12,7 @@
   <newsfor version="2.7" date="">
    <ni>Added acess lists based on request IP address and TFTP opcode for automating access policy</ni>
    <ni>Added possibility to start/stop TFTP server, while keeping client functionality intact</ni>
+   <ni>Logging to file</ni>
   </newsfor>
   <newsfor version="2.6" date="August 6th, 2005">
    <ni>more robust solution to the backslash/slash dilemma</ni>
@@ -86,6 +87,7 @@
    <li><b>Read Request Behavior</b> - You may choose to automatically agree to give all files requested, to be prompted to confirm these operations, or to deny all requests as if you're not even here.</li>
    <li><b>Write Request Behavior</b> - You may chose to <b>take all files</b> (<i>not recommended</i>), to <b>prompt only if file exists already</b>, <b>Always prompt</b> or <b>Deny all requests</b>.</li>
    <li><a name="ConfirmationTimeOut"/><b>Confirmation timeout</b> - this is the time <kin>PumpKIN</kin> will wait for you to accept or deny request before it will give up and take default action which is always deny.</li>
+   <li><b>Log file</b> - If you want to enable logging to file, set the destination file here.</li>
   </ul>
  </topic>
  <topic id="SoundsOptions" title="Sounds Options">
