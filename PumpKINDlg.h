@@ -367,6 +367,13 @@ class CPumpKINDlg : public CDialog
 {
 // Construction
 public:
+	void AdjustButton(CWnd& w,CRect& wrc);
+	void RecalcLayout(int,int);
+	CSize m_MinSize;
+	UINT m_bottomGapLog;
+	UINT m_bottomGapListen;
+	UINT m_rightGapList;
+	UINT m_rightGapButtons;
 	CString m_lastlogerr;
 	void LogLine(LPCTSTR str);
 	CString m_LogFile;
@@ -430,6 +437,10 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPumpKINDlg)
 	enum { IDD = IDD_PUMPKIN_DIALOG };
+	CButton	m_HelpCtl;
+	CButton	m_PutCtl;
+	CButton	m_GetCtl;
+	CButton	m_ExitCtl;
 	CButton	m_ListenCtl;
 	CButton	m_AbortCtl;
 	CButton	m_OptionsCtl;
@@ -482,6 +493,8 @@ protected:
 	virtual void OnCancel();
 	afx_msg void OnHelp();
 	afx_msg void OnListening();
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

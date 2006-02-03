@@ -13,6 +13,7 @@
    <ni>Added acess lists based on request IP address and TFTP opcode for automating access policy</ni>
    <ni>Added possibility to start/stop TFTP server, while keeping client functionality intact</ni>
    <ni>Logging to file</ni>
+   <ni>Resizable main window</ni>
   </newsfor>
   <newsfor version="2.6" date="August 6th, 2005">
    <ni>more robust solution to the backslash/slash dilemma</ni>

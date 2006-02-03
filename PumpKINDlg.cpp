@@ -129,6 +129,10 @@ void CPumpKINDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPumpKINDlg)
+	DDX_Control(pDX, ID_HELP, m_HelpCtl);
+	DDX_Control(pDX, IDC_PUT, m_PutCtl);
+	DDX_Control(pDX, IDC_GET, m_GetCtl);
+	DDX_Control(pDX, IDC_EXIT, m_ExitCtl);
 	DDX_Control(pDX, IDC_LISTENING, m_ListenCtl);
 	DDX_Control(pDX, IDC_ABORT, m_AbortCtl);
 	DDX_Control(pDX, IDC_OPTIONS, m_OptionsCtl);
@@ -156,6 +160,7 @@ BEGIN_MESSAGE_MAP(CPumpKINDlg, CDialog)
 	ON_BN_CLICKED(IDC_ABORT, OnAbort)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_TRAY_SHOWPUMPKINWINDOW, OnTrayShowpumpkinwindow)
+	ON_COMMAND(ID_TRAY_LISTEN, OnTrayListen)
 	ON_COMMAND(ID_TRAY_EXIT, OnTrayExit)
 	ON_COMMAND(ID_TRAY_ABOUTPUMPKIN, OnTrayAboutpumpkin)
 	ON_COMMAND(ID_TRAY_FETCHFILE, OnTrayFetchfile)
@@ -168,7 +173,8 @@ BEGIN_MESSAGE_MAP(CPumpKINDlg, CDialog)
 	ON_WM_DROPFILES()
 	ON_BN_CLICKED(ID_HELP, OnHelp)
 	ON_BN_CLICKED(IDC_LISTENING, OnListening)
-	ON_COMMAND(ID_TRAY_LISTEN, OnTrayListen)
+	ON_WM_GETMINMAXINFO()
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -201,7 +207,6 @@ BOOL CPumpKINDlg::OnInitDialog()
 
 	VERIFY(m_Retrier->Create(NULL,"PumpKIN-Retrier",WS_CHILD,CRect(0,0,0,0),this,0));
 
-
 	m_Images.Create(16,16,TRUE,2,1);
 	m_iRRQ = m_Images.Add(AfxGetApp()->LoadIcon(IDI_RRQ));
 	m_iWRQ = m_Images.Add(AfxGetApp()->LoadIcon(IDI_WRQ));
@@ -224,6 +229,20 @@ CRect listrc;
 	LogLine(IDS_LOG_START);
 
 	SetupButtons();
+
+CRect wrci, wrco;
+	GetWindowRect(&wrco);
+	GetClientRect(&wrci);
+CRect brc;
+	m_GetCtl.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_rightGapButtons = wrci.right-brc.right;
+	m_List.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_rightGapList = wrci.right-brc.right;
+	m_ListenCtl.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_bottomGapListen = wrci.bottom-brc.bottom;
+	m_Log.GetWindowRect(&brc);	ScreenToClient(&brc);
+	m_bottomGapLog = wrci.bottom-brc.bottom;
+	m_MinSize.cx = wrco.Width(); m_MinSize.cy=wrco.Height();
 
 CRect rc, drc;
 	GetWindowRect(rc);
@@ -2076,4 +2095,65 @@ void CPumpKINDlg::LogLine(LPCTSTR str)
 			}
 		}
 	}
+}
+
+void CPumpKINDlg::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI) 
+{
+	CDialog::OnGetMinMaxInfo(lpMMI);
+	if(m_MinSize.cx>0 && m_MinSize.cy>0){
+		lpMMI->ptMinTrackSize.x = m_MinSize.cx;
+		lpMMI->ptMinTrackSize.y = m_MinSize.cy;
+	}
+}
+
+void CPumpKINDlg::OnSize(UINT nType, int cx, int cy) 
+{
+	CDialog::OnSize(nType, cx, cy);
+	if(nType==SIZE_RESTORED)
+		RecalcLayout(cx,cy);
+}
+
+void CPumpKINDlg::RecalcLayout(int,int)
+{
+	CRect wrc;
+	GetClientRect(&wrc);
+	AdjustButton(m_GetCtl,wrc);
+	AdjustButton(m_PutCtl,wrc);
+	AdjustButton(m_AbortCtl,wrc);
+	AdjustButton(m_HelpCtl,wrc);
+	AdjustButton(m_ExitCtl,wrc);
+	AdjustButton(m_OptionsCtl,wrc);
+	CRect brc;
+	m_List.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_List.SetWindowPos(
+		0,
+		brc.left, brc.top,
+		wrc.right-m_rightGapList-brc.left, brc.bottom-brc.top,
+		SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOZORDER|SWP_NOCOPYBITS );
+	m_Log.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_Log.SetWindowPos(
+		0,
+		brc.left, brc.top,
+		wrc.right-m_rightGapButtons-brc.left, wrc.bottom-m_bottomGapLog-brc.top,
+		SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOZORDER|SWP_NOCOPYBITS );
+	m_ListenCtl.GetWindowRect(&brc); ScreenToClient(&brc);
+	m_ListenCtl.SetWindowPos(
+		0,
+		wrc.right-brc.Width()-m_rightGapButtons, wrc.bottom-brc.Height()-m_bottomGapListen,
+		0,0,
+		SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOSIZE|SWP_NOZORDER|SWP_NOCOPYBITS );
+	int i = m_Log.GetCount();
+	if(i!=LB_ERR)
+		m_Log.SetCurSel(i-1);
+}
+
+void CPumpKINDlg::AdjustButton(CWnd& w,CRect& wrc)
+{
+	CRect brc;
+	w.GetWindowRect(&brc); ScreenToClient(&brc);
+	w.SetWindowPos(
+		0,
+		wrc.right-brc.Width()-m_rightGapButtons, brc.top,
+		0, 0,
+		SWP_NOACTIVATE|SWP_NOOWNERZORDER|SWP_NOSIZE|SWP_NOZORDER|SWP_NOCOPYBITS );
 }

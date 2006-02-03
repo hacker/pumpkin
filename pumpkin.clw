@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CPropsServer
+LastClass=CPumpKINDlg
 LastTemplate=CComboBox
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "PumpKIN.h"
@@ -16,14 +16,14 @@ ResourceCount=10
 Resource1=IDD_REQUEST
 Resource2=IDD_PROPS_NETWORK
 Resource3=IDD_CONFIRM_RRQ
-Resource4=IDD_ABOUTBOX
+Resource4=IDD_PROPS_SERVER
 Class4=CPropsServer
 Class5=CPropsNetwork
 Resource5=IDD_CONFIRM_WRQ
 Resource6=IDD_PROPS_ACL
 Class6=CConfirmRRQDlg
 Class7=CConfirmWRQDlg
-Resource7=IDD_PUMPKIN_DIALOG
+Resource7=IDD_ABOUTBOX
 Class8=CRequestDlg
 Class9=CResolver
 Class10=CRetrier
@@ -33,7 +33,7 @@ Class12=CPropsSounds
 Resource9=IDM_POPUPS
 Class13=CPropsACL
 Class14=CACLTargetCombo
-Resource10=IDD_PROPS_SERVER
+Resource10=IDD_PUMPKIN_DIALOG
 
 [CLS:CPumpKINApp]
 Type=0
@@ -80,7 +80,7 @@ Control4=IDC_ABORT,button,1342259200
 Control5=IDC_OPTIONS,button,1342259200
 Control6=IDC_EXIT,button,1342259200
 Control7=ID_HELP,button,1342259200
-Control8=IDC_LOG,listbox,1353728129
+Control8=IDC_LOG,listbox,1353728385
 Control9=IDCANCEL,button,1073741824
 Control10=IDC_LISTENING,button,1342275619
 
@@ -134,7 +134,7 @@ ImplementationFile=PropsServer.cpp
 BaseClass=CPropertyPage
 Filter=D
 VirtualFilter=idWC
-LastObject=IDC_LOGFILE_BROWSE
+LastObject=CPropsServer
 
 [CLS:CPropsNetwork]
 Type=0
