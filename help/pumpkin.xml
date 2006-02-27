@@ -9,9 +9,9 @@
   <credist/>
  </topic>
  <topic id="News" title="What's New">
-  <newsfor version="2.7" date="">
-   <ni>Added acess lists based on request IP address and TFTP opcode for automating access policy</ni>
-   <ni>Added possibility to start/stop TFTP server, while keeping client functionality intact</ni>
+  <newsfor version="2.7" date="February 28th, 2006">
+   <ni>Access lists based on request IP address and TFTP opcode for automating access policy</ni>
+   <ni>Possibility to start/stop TFTP server, while keeping client functionality intact</ni>
    <ni>Logging to file</ni>
    <ni>Resizable main window</ni>
   </newsfor>
