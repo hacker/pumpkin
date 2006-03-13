@@ -79,7 +79,7 @@ END_MESSAGE_MAP()
 // CPumpKINDlg dialog
 
 CPumpKINDlg::CPumpKINDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CPumpKINDlg::IDD, pParent)
+	: CDialog(CPumpKINDlg::IDD, pParent), m_MinSize(0,0)
 {
 	m_Listener.m_Daddy = this;
 
