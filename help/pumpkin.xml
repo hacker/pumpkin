@@ -9,6 +9,9 @@
   <credist/>
  </topic>
  <topic id="News" title="What's New">
+  <newsfor version="2.7.1" date="March 13th, 2006">
+   <ni>Bugfix release</ni>
+  </newsfor>
   <newsfor version="2.7" date="February 28th, 2006">
    <ni>Access lists based on request IP address and TFTP opcode for automating access policy</ni>
    <ni>Possibility to start/stop TFTP server, while keeping client functionality intact</ni>
