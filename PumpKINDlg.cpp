@@ -579,10 +579,10 @@ int rv = socket->SendTo(udpBase(),length,(SOCKADDR*)saddr,sizeof(SOCKADDR_IN));
 	return TRUE;
 }
 
-void CXferSocket::DoSelect()
+void CXferSocket::DoSelect(BOOL do_select)
 {
 	if(m_Peer.sin_addr.s_addr!=INADDR_NONE)
-		AsyncSelect(FD_CLOSE|FD_READ|(m_Queue.IsEmpty()?0:FD_WRITE));
+		AsyncSelect(FD_CLOSE|FD_READ|((m_Queue.IsEmpty()&&!do_select)?0:FD_WRITE));
 }
 
 void CXferSocket::OnReceive(int nErrorCode)
@@ -854,11 +854,7 @@ tftp *p = tftp::Allocate(tftp::tftpDATA::tftpSize(m_blkSize));
 		m_LastSlack = m_blkSize-bytes;
 		PostTFTP(p);
 		if(bytes<m_blkSize){
-			state=stateFinish;
-			ASSERT(m_Daddy);
-		CString tmp;
-			tmp.Format(IDS_LOG_XFERRRQFINISHED,(LPCTSTR)m_FileName);
-			m_Daddy->LogLine(tmp);
+			state=stateClosing; m_ACKtoClose = m_ACK+1;
 		}
 	}CATCH(CFileException,e){
 		Deny(e);
@@ -936,39 +932,47 @@ BOOL CRRQSocket::OnTFTP(tftp* p)
 BOOL rv = TRUE;
 	switch(p->Opcode()){
 	case tftp::opOACK:
-		m_ACK=0;
-		ASSERT(state!=stateFinish);
-	{
-	tftp::tftpOptions o;
-		if(p->GetOptions(&o)){
-		CString v;
-			if(o.Lookup(tftpoBSize,v)){
-				m_blkSize=atoi(v);
-				if(!m_blkSize){	// *** More sanity checks
-					Deny(tftp::errOption,IDS_TFTP_ERROR_BSIZE);
-					rv = TRUE;
-					break;
+		{
+			m_ACK=0;
+			ASSERT(state!=stateFinish);
+		tftp::tftpOptions o;
+			if(p->GetOptions(&o)){
+			CString v;
+				if(o.Lookup(tftpoBSize,v)){
+					m_blkSize=atoi(v);
+					if(!m_blkSize){	// *** More sanity checks
+						Deny(tftp::errOption,IDS_TFTP_ERROR_BSIZE);
+						rv = TRUE;
+						break;
+					}
+				}
+				if(o.Lookup(tftpoTOut,v)){
+					m_timeOut=atoi(v);
+					if(!m_timeOut){	// *** More sanity checks
+						Deny(tftp::errOption,IDS_TFTP_ERROR_TOUT);
+						rv = TRUE;
+						break;
+					}
+				}
+				if(o.Lookup(tftpoXResume,v)){
+					m_ACK=atoi(v);
 				}
 			}
-			if(o.Lookup(tftpoTOut,v)){
-				m_timeOut=atoi(v);
-				if(!m_timeOut){	// *** More sanity checks
-					Deny(tftp::errOption,IDS_TFTP_ERROR_TOUT);
-					rv = TRUE;
-					break;
-				}
-			}
-			if(o.Lookup(tftpoXResume,v)){
-				m_ACK=atoi(v);
-			}
+			UpdateList();
+			DoXfer();
 		}
-		UpdateList();
-		DoXfer();
-	}
 		break;
 	case tftp::opACK:
 		m_ACK=p->data.m_ACK.Block();
-		if(state!=stateFinish){
+		if(state==stateClosing && m_ACK==m_ACKtoClose) {
+			state = stateFinish;
+			ASSERT(m_Daddy);
+		CString tmp;
+			tmp.Format(IDS_LOG_XFERRRQFINISHED,(LPCTSTR)m_FileName);
+			m_Daddy->LogLine(tmp);
+			rv = FALSE;
+			DoSelect(TRUE);
+		}else if(state!=stateFinish){
 			UpdateList();
 			DoXfer();
 		}

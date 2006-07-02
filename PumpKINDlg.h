@@ -312,7 +312,7 @@ public:
 	void SetPeer(SOCKADDR_IN *sin);
 	virtual BOOL OnTFTP(tftp* p) = 0;
 	virtual void OnReceive(int nErrorCode);
-	void DoSelect();
+	void DoSelect(BOOL do_select=FALSE);
 	SOCKADDR_IN m_Peer;
 	virtual void OnSend(int nErrorCode);
 	CPumpKINDlg* m_Daddy;
@@ -341,6 +341,7 @@ public:
 };
 class CRRQSocket : public CXferSocket {
 public:
+	UINT m_ACKtoClose;
 	void OnHostKnown();
 	virtual void OnResolved();
 	BOOL ConfirmRequest();
