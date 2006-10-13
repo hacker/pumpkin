@@ -96,7 +96,7 @@ CPumpKINDlg::CPumpKINDlg(CWnd* pParent /*=NULL*/)
 	m_PromptTimeOut=30;
 	m_bShown=TRUE;
 	m_bExiting=FALSE;
-	m_BlockSize=1024;
+	m_BlockSize=2048;
 	m_bnw.AssignSound("(bang)",IDR_WAVE_RING,CBellsNWhistles::CBang::bangResource);
 	m_bnw.AssignSound("(done)",IDR_WAVE_FINISHED,CBellsNWhistles::CBang::bangResource);
 	m_bnw.AssignSound("(oops)",IDR_WAVE_ABORTED,CBellsNWhistles::CBang::bangResource);
@@ -1033,6 +1033,10 @@ BOOL CWRQSocket::OnTFTP(tftp* p)
 			if(o.Lookup(tftpoTSize,v)){
 				m_xferSize=atoi(v);
 			}
+			if(m_xferSize>=0 && m_xferSize>=(m_blkSize<<16)) {
+				Deny(tftp::errUndefined,IDS_TFTP_ERROR_TOOBIG);
+				return TRUE;
+			}
 		}
 		UpdateList();
 		DoXfer();
@@ -1409,6 +1413,11 @@ tftp::tftpOptions oack;
 		oack[tftpoXResume]=v;
 	}else
 		m_ACK=0;
+	// XXX: see if we can negotiate the right block size somehow
+	if(m_xferSize>=0 && m_xferSize>=(m_blkSize<<16)) {
+		Deny(tftp::errUndefined,IDS_TFTP_ERROR_TOOBIG);
+		return TRUE;
+	}
 	state=stateXfer;
 	if(oack.GetCount()){
 	tftp *p = tftp::Allocate(tftp::tftpOACK::tftpSize(&oack));
