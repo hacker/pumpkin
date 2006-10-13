@@ -88,6 +88,8 @@
 #define IDS_INVALID_NETMASK             159
 #define IDS_INVALID_RULE                160
 #define IDS_LOG_LOGERROR                161
+#define IDS_TFTP_ERROR_TOOBIG           162
+#define IDS_LOG_DENYING                 163
 #define IDC_KLEVERNET                   1000
 #define IDC_CONNECTIONS                 1001
 #define IDC_LOG                         1003

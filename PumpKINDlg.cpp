@@ -778,6 +778,11 @@ CFileException e;
 				o[tftpoTOut]=v;
 			}
 		}
+		// XXX: see if we can enforce our preference regarding block size here.
+		if(m_xferSize >= (m_blkSize<<16)) {
+			Deny(tftp::errUndefined,IDS_TFTP_ERROR_TOOBIG);
+			return TRUE;
+		}
 		state = stateXfer;
 		m_ACK=0;
 		if(o.GetCount()){
@@ -878,11 +883,9 @@ void CXferSocket::PostError(UINT errCode,UINT errID)
 CString msg;
 	msg.LoadString(errID);
 	ASSERT(m_Daddy);
-/*	// ***
 CString tmp;
 	tmp.Format(IDS_LOG_SENTTFTPERROR,errCode,(LPCTSTR)msg);
 	m_Daddy->LogLine(tmp);
- */
 tftp* err = tftp::Allocate(tftp::tftpERROR::tftpSize(msg));
 err->SetOpcode(tftp::opERROR);
 	err->errSet(errCode,msg);
