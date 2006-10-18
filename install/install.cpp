@@ -1,7 +1,7 @@
 #include "resource.h"
 #include "../shared-code/install.h"
 
-#define VERSION "2.7.1"
+#define VERSION "2.7.2"
 #define	KINAME "PumpKIN " VERSION
 #define SKINAME "PumpKIN"
 

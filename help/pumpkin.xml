@@ -9,8 +9,8 @@
   <credist/>
  </topic>
  <topic id="News" title="What's New">
-  <newsfor version="2.7.2" date="">
-   <ni>Added rejecting of too large files requests with explicit error message about the block size</ni>
+  <newsfor version="2.7.2" date="October 18th, 2006">
+   <ni>Added rejecting of too large file requests with explicit error message about the block size</ni>
    <ni>A bit more elaborate logging</ni>
    <ni>Not closing receive socket until the last ACK receved now</ni>
   </newsfor>
