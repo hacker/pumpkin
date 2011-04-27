@@ -151,6 +151,7 @@
 #define IDC_LISTENING                   1052
 #define IDC_LOGFILE                     1053
 #define IDC_LOGFILE_BROWSE              1054
+#define IDC_LISTENADDRESS               1055
 #define ID_TRAY_HELP                    32771
 #define ID_TRAY_ABOUTPUMPKIN            32772
 #define ID_TRAY_EXIT                    32773
@@ -165,9 +166,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        155
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32781
-#define _APS_NEXT_CONTROL_VALUE         1055
+#define _APS_NEXT_CONTROL_VALUE         1056
 #define _APS_NEXT_SYMED_VALUE           102
 #endif
 #endif

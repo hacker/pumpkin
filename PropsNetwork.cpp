@@ -23,6 +23,7 @@ CPropsNetwork::CPropsNetwork() : CPropertyPage(CPropsNetwork::IDD)
 	m_SpeakPort = 0;
 	m_TimeOut = 0;
 	m_BlockSize = 0;
+	m_ListenAddress = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -43,6 +44,8 @@ void CPropsNetwork::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_TIMEOUT, m_TimeOut);
 	DDV_MinMaxUInt(pDX, m_TimeOut, 5, 60);
 	DDX_Text(pDX, IDC_BLOCKSIZE, m_BlockSize);
+	DDX_Text(pDX, IDC_LISTENADDRESS, m_ListenAddress);
+	DDV_MaxChars(pDX, m_ListenAddress, 15);
 	//}}AFX_DATA_MAP
 }
 

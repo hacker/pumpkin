@@ -2,7 +2,7 @@
 
 [General Info]
 Version=1
-LastClass=CPumpKINDlg
+LastClass=CPropsNetwork
 LastTemplate=CComboBox
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "PumpKIN.h"
@@ -14,7 +14,7 @@ Class3=CAboutDlg
 
 ResourceCount=10
 Resource1=IDD_REQUEST
-Resource2=IDD_PROPS_NETWORK
+Resource2=IDD_PUMPKIN_DIALOG
 Resource3=IDD_CONFIRM_RRQ
 Resource4=IDD_PROPS_SERVER
 Class4=CPropsServer
@@ -33,7 +33,7 @@ Class12=CPropsSounds
 Resource9=IDM_POPUPS
 Class13=CPropsACL
 Class14=CACLTargetCombo
-Resource10=IDD_PUMPKIN_DIALOG
+Resource10=IDD_PROPS_NETWORK
 
 [CLS:CPumpKINApp]
 Type=0
@@ -110,7 +110,7 @@ Control18=IDC_LOGFILE_BROWSE,button,1342242880
 [DLG:IDD_PROPS_NETWORK]
 Type=1
 Class=CPropsNetwork
-ControlCount=15
+ControlCount=17
 Control1=IDC_STATIC,button,1342177287
 Control2=IDC_STATIC,static,1342308354
 Control3=IDC_LISTENPORT,edit,1350631552
@@ -126,6 +126,8 @@ Control12=IDC_STATIC,static,1342308352
 Control13=IDC_STATIC,static,1342308352
 Control14=IDC_BLOCKSIZE,edit,1350639744
 Control15=IDC_BSIZESPIN,msctls_updown32,1342177463
+Control16=IDC_STATIC,static,1342308354
+Control17=IDC_LISTENADDRESS,edit,1350631552
 
 [CLS:CPropsServer]
 Type=0
@@ -143,7 +145,7 @@ ImplementationFile=PropsNetwork.cpp
 BaseClass=CPropertyPage
 Filter=D
 VirtualFilter=idWC
-LastObject=IDC_BLOCKSIZE
+LastObject=IDC_LISTENADDRESS
 
 [DLG:IDD_CONFIRM_RRQ]
 Type=1

@@ -431,6 +431,7 @@ public:
 	BOOL m_bTFTPSubdirs;
 	CString m_TFTPRoot;
 	UINT m_ListenPort;
+	CString m_ListenAddress;
 	UINT m_BlockSize;
 	CListenSocket m_Listener;
 	CPumpKINDlg(CWnd* pParent = NULL);	// standard constructor

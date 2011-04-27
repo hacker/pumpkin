@@ -24,6 +24,7 @@ public:
 	UINT	m_SpeakPort;
 	UINT	m_TimeOut;
 	UINT	m_BlockSize;
+	CString	m_ListenAddress;
 	//}}AFX_DATA
 
 

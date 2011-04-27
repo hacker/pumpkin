@@ -81,6 +81,7 @@
    <li><b>UDP Ports</b>
     <ul>
      <li><b>Listen for incoming connections on port</b> - specifies the port we're listening to. The default as defined in <rfc num="1350"/> is 69.</li>
+     <li><b>ip address</b> - ip address to listen to.</li>
      <li><b>Send outgoing requests to port</b> - specifies the port we're going to send all requests to.</li>
     </ul>
    </li>

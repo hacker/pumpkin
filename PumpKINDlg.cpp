@@ -1228,6 +1228,7 @@ CPropsACL acl;
 	server.m_LogFile=m_LogFile;
 
 	network.m_ListenPort=m_ListenPort;
+	network.m_ListenAddress=m_ListenAddress;
 	network.m_SpeakPort=m_SpeakPort;
 	network.m_TimeOut=m_TFTPTimeOut.GetTotalSeconds();
 	network.m_BlockSize=m_BlockSize;
@@ -1251,6 +1252,7 @@ CPropsACL acl;
 		m_LogFile=server.m_LogFile;
 
 		m_ListenPort=network.m_ListenPort;
+		m_ListenAddress=network.m_ListenAddress;
 		m_SpeakPort=network.m_SpeakPort;
 		m_TFTPTimeOut=CTimeSpan(network.m_TimeOut);
 		m_BlockSize=network.m_BlockSize;
@@ -1875,6 +1877,7 @@ CWinApp *app = AfxGetApp();
 	m_bnwAbort=app->GetProfileString("BellsNWhistles","Abort",m_bnwAbort);
 	m_bTFTPSubdirs=app->GetProfileInt("TFTPSettings","Subdirs",m_bTFTPSubdirs);
 	m_ListenPort=app->GetProfileInt("TFTPSettings","ListenPort",m_ListenPort);
+	m_ListenAddress=app->GetProfileString("TFTPSettings","ListenAddress",m_ListenAddress);
 	m_LogLength=app->GetProfileInt("UISettings","LogLength",m_LogLength);
 	m_PromptTimeOut=app->GetProfileInt("UISettings","PromptTimeout",m_PromptTimeOut);
 	m_RRQMode=app->GetProfileInt("TFTPSettings","RRQMode",m_RRQMode);
@@ -1905,6 +1908,7 @@ CWinApp *app = AfxGetApp();
 	app->WriteProfileString("BellsNWhistles","Abort",m_bnwAbort);
 	app->WriteProfileInt("TFTPSettings","Subdirs",m_bTFTPSubdirs);
 	app->WriteProfileInt("TFTPSettings","ListenPort",m_ListenPort);
+	app->WriteProfileString("TFTPSettings","ListenAddress",m_ListenAddress);
 	app->WriteProfileInt("UISettings","LogLength",m_LogLength);
 	app->WriteProfileInt("UISettings","PromptTimeout",m_PromptTimeOut);
 	app->WriteProfileInt("TFTPSettings","RRQMode",m_RRQMode);
@@ -2067,16 +2071,14 @@ void CPumpKINDlg::OnHelp()
 
 BOOL CListenSocket::SetListen(BOOL b) {
 	ASSERT(m_Daddy);
-	if(b==m_bListen)
-		return TRUE;
-	if(b) {
-		if(!Create(m_Daddy->m_ListenPort,SOCK_DGRAM))
-			return FALSE;
-		return m_bListen=TRUE;
-	}else{
+	if(b==m_bListen) return TRUE;
+	if(!b) {
 		Close(); m_bListen=FALSE;
 		return TRUE;
 	}
+	return m_bListen=Create(m_Daddy->m_ListenPort,SOCK_DGRAM,
+		FD_READ|FD_WRITE|FD_OOB|FD_ACCEPT|FD_CONNECT|FD_CLOSE,
+		m_Daddy->m_ListenAddress.IsEmpty()?NULL:(LPCTSTR)m_Daddy->m_ListenAddress);
 }
 
 void CPumpKINDlg::OnListening() 
