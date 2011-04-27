@@ -601,6 +601,7 @@ SOCKADDR_IN sin;
 	if(!p->Receive(this,fionread,&sin)){
 		m_Daddy->LogLine(IDS_LOG_XFERUDPRECEIVE);
 		delete p;
+		return;
 	}else
 		if(m_Peer.sin_addr.s_addr==INADDR_NONE){
 			m_Peer.sin_addr=sin.sin_addr;
