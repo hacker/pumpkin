@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bindPort</key>
+	<integer>69</integer>
+	<key>bindAddress</key>
+	<string>0.0.0.0</string>
+	<key>remotePort</key>
+	<integer>69</integer>
+	<key>blockSize</key>
+	<integer>512</integer>
+	<key>xferType</key>
+	<string>octet</string>
+	<key>timeout</key>
+	<integer>10</integer>
+	<key>rrqBehavior</key>
+	<integer>1</integer>
+	<key>wrqBehavior</key>
+	<integer>2</integer>
+	<key>confirmationTimeout</key>
+	<string>30</string>
+	<key>giveUpTimeout</key>
+	<integer>120</integer>
+	<key>listen</key>
+	<true/>
+</dict>
+</plist>

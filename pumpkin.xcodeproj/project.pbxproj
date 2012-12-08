@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		68081EA9160E6D2B009D14E1 /* put.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68081EA8160E6D2B009D14E1 /* put.icns */; };
+		68081EAB160F856A009D14E1 /* get.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68081EAA160F856A009D14E1 /* get.icns */; };
+		68081EAD160F8BE8009D14E1 /* abort.icns in Resources */ = {isa = PBXBuildFile; fileRef = 68081EAC160F8BE8009D14E1 /* abort.icns */; };
+		6808EC7A166158AF00F479A9 /* IPTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6808EC79166158AE00F479A9 /* IPTransformer.m */; };
+		6808EC7E1661860D00F479A9 /* biportal in CopyFiles */ = {isa = PBXBuildFile; fileRef = 68DAEE2A14118D370007A630 /* biportal */; };
+		680E89A51482B03A008C9134 /* pumpkin-defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 680E89A41482B03A008C9134 /* pumpkin-defaults.plist */; };
+		680E89A91482EF73008C9134 /* NumberTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 680E89A81482EF73008C9134 /* NumberTransformer.m */; };
+		682A27901419688B005AB8FB /* XFer.m in Sources */ = {isa = PBXBuildFile; fileRef = 682A278F1419688B005AB8FB /* XFer.m */; };
+		682A2792141BD97B005AB8FB /* TFTPPacket.m in Sources */ = {isa = PBXBuildFile; fileRef = 682A2791141BD97B005AB8FB /* TFTPPacket.m */; };
+		683B812B15EA9FB5002A9253 /* pumpkin.icns in Resources */ = {isa = PBXBuildFile; fileRef = 683B812A15EA9FB5002A9253 /* pumpkin.icns */; };
+		68428F7A166BAFB500AF8D8C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68428F79166BAFB500AF8D8C /* Cocoa.framework */; };
+		68428F7C166BAFC600AF8D8C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68428F7B166BAFC600AF8D8C /* Security.framework */; };
+		68458CB7141579E100F1E4FF /* DaemonListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 68458CB6141579E100F1E4FF /* DaemonListener.m */; };
+		68458CBE14157A4100F1E4FF /* SendXFer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68458CBD14157A4100F1E4FF /* SendXFer.m */; };
+		685CCB0F14D4AC7700F5B76B /* XFersViewDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CCB0E14D4AC7700F5B76B /* XFersViewDatasource.m */; };
+		685CCB1214D5BA1300F5B76B /* StringsAttached.m in Sources */ = {isa = PBXBuildFile; fileRef = 685CCB1114D5BA1300F5B76B /* StringsAttached.m */; };
+		686315D514DDE7B40067B682 /* ReceiveXFer.m in Sources */ = {isa = PBXBuildFile; fileRef = 686315D414DDE7B40067B682 /* ReceiveXFer.m */; };
+		68697A74166BC88900D08FEA /* PumpKIN.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68697A73166BC88900D08FEA /* PumpKIN.xib */; };
+		68697A76166BC91900D08FEA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 68697A75166BC91900D08FEA /* Credits.rtf */; };
+		68697A82166BCBE000D08FEA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 68697A80166BCBE000D08FEA /* InfoPlist.strings */; };
+		687435A914142E50003EF6EF /* klever-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 687435A814142E50003EF6EF /* klever-background.png */; };
+		68783E43148585EB00DEE0B5 /* IPFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 68783E42148585EB00DEE0B5 /* IPFormatter.m */; };
+		68B3D56D14E1CD37002B0D56 /* ARequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B3D56C14E1CD37002B0D56 /* ARequest.xib */; };
+		68B3D57114E1CE8D002B0D56 /* ARequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68B3D57014E1CE8D002B0D56 /* ARequest.m */; };
+		68D5F05D14F2ADBF00CF4CFE /* ConfirmRequest.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68D5F05C14F2ADBF00CF4CFE /* ConfirmRequest.xib */; };
+		68D5F06114F4397200CF4CFE /* ConfirmRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D5F06014F4397200CF4CFE /* ConfirmRequest.m */; };
+		68DAEE1614118CB60007A630 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DAEE1514118CB60007A630 /* main.m */; };
+		68DAEE1D14118CB60007A630 /* PumpKIN.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DAEE1C14118CB60007A630 /* PumpKIN.m */; };
+		68DAEE2E14118D370007A630 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 68DAEE2D14118D370007A630 /* main.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68DAEE401412D5FC0007A630 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 68DAEDFC14118CB60007A630 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 68DAEE2914118D370007A630;
+			remoteInfo = biportal;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6808EC7D166185F900F479A9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				6808EC7E1661860D00F479A9 /* biportal in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68DAEE2814118D370007A630 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = usr/share/man/man1;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		68081EA8160E6D2B009D14E1 /* put.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = put.icns; sourceTree = "<group>"; };
+		68081EAA160F856A009D14E1 /* get.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = get.icns; sourceTree = "<group>"; };
+		68081EAC160F8BE8009D14E1 /* abort.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = abort.icns; sourceTree = "<group>"; };
+		6808EC78166158AE00F479A9 /* IPTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPTransformer.h; sourceTree = "<group>"; };
+		6808EC79166158AE00F479A9 /* IPTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPTransformer.m; sourceTree = "<group>"; };
+		680E89A41482B03A008C9134 /* pumpkin-defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pumpkin-defaults.plist"; sourceTree = "<group>"; };
+		680E89A71482EF73008C9134 /* NumberTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberTransformer.h; sourceTree = "<group>"; };
+		680E89A81482EF73008C9134 /* NumberTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberTransformer.m; sourceTree = "<group>"; };
+		682A278E1419688A005AB8FB /* XFer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFer.h; sourceTree = "<group>"; };
+		682A278F1419688B005AB8FB /* XFer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFer.m; sourceTree = "<group>"; };
+		682A2791141BD97B005AB8FB /* TFTPPacket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TFTPPacket.m; sourceTree = "<group>"; };
+		683B812A15EA9FB5002A9253 /* pumpkin.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = pumpkin.icns; sourceTree = "<group>"; };
+		68428F79166BAFB500AF8D8C /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		68428F7B166BAFC600AF8D8C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		68458CB5141579E100F1E4FF /* DaemonListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaemonListener.h; sourceTree = "<group>"; };
+		68458CB6141579E100F1E4FF /* DaemonListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaemonListener.m; sourceTree = "<group>"; };
+		68458CB914157A1000F1E4FF /* TFTPPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFTPPacket.h; sourceTree = "<group>"; };
+		68458CBC14157A4100F1E4FF /* SendXFer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendXFer.h; sourceTree = "<group>"; };
+		68458CBD14157A4100F1E4FF /* SendXFer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SendXFer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		685CCB0D14D4AC7700F5B76B /* XFersViewDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XFersViewDatasource.h; sourceTree = "<group>"; };
+		685CCB0E14D4AC7700F5B76B /* XFersViewDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XFersViewDatasource.m; sourceTree = "<group>"; };
+		685CCB1014D5BA1300F5B76B /* StringsAttached.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringsAttached.h; sourceTree = "<group>"; };
+		685CCB1114D5BA1300F5B76B /* StringsAttached.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringsAttached.m; sourceTree = "<group>"; };
+		686315D314DDE7B40067B682 /* ReceiveXFer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveXFer.h; sourceTree = "<group>"; };
+		686315D414DDE7B40067B682 /* ReceiveXFer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ReceiveXFer.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		68697A73166BC88900D08FEA /* PumpKIN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PumpKIN.xib; sourceTree = "<group>"; };
+		68697A75166BC91900D08FEA /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		68697A7E166BCBAD00D08FEA /* pumpkin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pumpkin-Info.plist"; sourceTree = "<group>"; };
+		68697A81166BCBE000D08FEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		687435A814142E50003EF6EF /* klever-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "klever-background.png"; sourceTree = "<group>"; };
+		68783E41148585EA00DEE0B5 /* IPFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFormatter.h; sourceTree = "<group>"; };
+		68783E42148585EB00DEE0B5 /* IPFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFormatter.m; sourceTree = "<group>"; };
+		68B3D56C14E1CD37002B0D56 /* ARequest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ARequest.xib; sourceTree = "<group>"; };
+		68B3D56F14E1CE8D002B0D56 /* ARequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ARequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		68B3D57014E1CE8D002B0D56 /* ARequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ARequest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		68D5F05C14F2ADBF00CF4CFE /* ConfirmRequest.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConfirmRequest.xib; sourceTree = "<group>"; };
+		68D5F05F14F4397200CF4CFE /* ConfirmRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ConfirmRequest.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		68D5F06014F4397200CF4CFE /* ConfirmRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ConfirmRequest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		68DAEE0514118CB60007A630 /* pumpkin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pumpkin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68DAEE1514118CB60007A630 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		68DAEE1714118CB60007A630 /* pumpkin-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "pumpkin-Prefix.pch"; sourceTree = "<group>"; };
+		68DAEE1B14118CB60007A630 /* PumpKIN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PumpKIN.h; sourceTree = "<group>"; };
+		68DAEE1C14118CB60007A630 /* PumpKIN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PumpKIN.m; sourceTree = "<group>"; };
+		68DAEE2A14118D370007A630 /* biportal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = biportal; sourceTree = BUILT_PRODUCTS_DIR; };
+		68DAEE2D14118D370007A630 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		68DAEE0214118CB60007A630 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68428F7C166BAFC600AF8D8C /* Security.framework in Frameworks */,
+				68428F7A166BAFB500AF8D8C /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68DAEE2714118D370007A630 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		68428F75166BA34400AF8D8C /* graphics */ = {
+			isa = PBXGroup;
+			children = (
+				68081EAC160F8BE8009D14E1 /* abort.icns */,
+				68081EAA160F856A009D14E1 /* get.icns */,
+				68081EA8160E6D2B009D14E1 /* put.icns */,
+				687435A814142E50003EF6EF /* klever-background.png */,
+			);
+			name = graphics;
+			sourceTree = "<group>";
+		};
+		68DAEDFA14118CB60007A630 = {
+			isa = PBXGroup;
+			children = (
+				683B812A15EA9FB5002A9253 /* pumpkin.icns */,
+				68DAEE0F14118CB60007A630 /* pumpkin */,
+				68DAEE2C14118D370007A630 /* biportal */,
+				68DAEE0814118CB60007A630 /* Frameworks */,
+				68DAEE0614118CB60007A630 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		68DAEE0614118CB60007A630 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				68DAEE0514118CB60007A630 /* pumpkin.app */,
+				68DAEE2A14118D370007A630 /* biportal */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		68DAEE0814118CB60007A630 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68428F7B166BAFC600AF8D8C /* Security.framework */,
+				68428F79166BAFB500AF8D8C /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		68DAEE0F14118CB60007A630 /* pumpkin */ = {
+			isa = PBXGroup;
+			children = (
+				68428F75166BA34400AF8D8C /* graphics */,
+				685CCB0D14D4AC7700F5B76B /* XFersViewDatasource.h */,
+				685CCB0E14D4AC7700F5B76B /* XFersViewDatasource.m */,
+				68458CB914157A1000F1E4FF /* TFTPPacket.h */,
+				682A2791141BD97B005AB8FB /* TFTPPacket.m */,
+				68D5F05C14F2ADBF00CF4CFE /* ConfirmRequest.xib */,
+				68D5F05F14F4397200CF4CFE /* ConfirmRequest.h */,
+				68D5F06014F4397200CF4CFE /* ConfirmRequest.m */,
+				682A278E1419688A005AB8FB /* XFer.h */,
+				682A278F1419688B005AB8FB /* XFer.m */,
+				686315D314DDE7B40067B682 /* ReceiveXFer.h */,
+				686315D414DDE7B40067B682 /* ReceiveXFer.m */,
+				68458CBC14157A4100F1E4FF /* SendXFer.h */,
+				68458CBD14157A4100F1E4FF /* SendXFer.m */,
+				68458CB5141579E100F1E4FF /* DaemonListener.h */,
+				68458CB6141579E100F1E4FF /* DaemonListener.m */,
+				68697A73166BC88900D08FEA /* PumpKIN.xib */,
+				68DAEE1B14118CB60007A630 /* PumpKIN.h */,
+				68DAEE1C14118CB60007A630 /* PumpKIN.m */,
+				6808EC78166158AE00F479A9 /* IPTransformer.h */,
+				6808EC79166158AE00F479A9 /* IPTransformer.m */,
+				68B3D56C14E1CD37002B0D56 /* ARequest.xib */,
+				68B3D56F14E1CE8D002B0D56 /* ARequest.h */,
+				68B3D57014E1CE8D002B0D56 /* ARequest.m */,
+				685CCB1014D5BA1300F5B76B /* StringsAttached.h */,
+				685CCB1114D5BA1300F5B76B /* StringsAttached.m */,
+				680E89A71482EF73008C9134 /* NumberTransformer.h */,
+				680E89A81482EF73008C9134 /* NumberTransformer.m */,
+				68783E41148585EA00DEE0B5 /* IPFormatter.h */,
+				68783E42148585EB00DEE0B5 /* IPFormatter.m */,
+				680E89A41482B03A008C9134 /* pumpkin-defaults.plist */,
+				68697A7E166BCBAD00D08FEA /* pumpkin-Info.plist */,
+				68DAEE1014118CB60007A630 /* Supporting Files */,
+			);
+			path = pumpkin;
+			sourceTree = "<group>";
+		};
+		68DAEE1014118CB60007A630 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				68697A80166BCBE000D08FEA /* InfoPlist.strings */,
+				68697A75166BC91900D08FEA /* Credits.rtf */,
+				68DAEE1514118CB60007A630 /* main.m */,
+				68DAEE1714118CB60007A630 /* pumpkin-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		68DAEE2C14118D370007A630 /* biportal */ = {
+			isa = PBXGroup;
+			children = (
+				68DAEE2D14118D370007A630 /* main.c */,
+			);
+			path = biportal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		68DAEE0414118CB60007A630 /* pumpkin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68DAEE2314118CB70007A630 /* Build configuration list for PBXNativeTarget "pumpkin" */;
+			buildPhases = (
+				68DAEE0114118CB60007A630 /* Sources */,
+				68DAEE0214118CB60007A630 /* Frameworks */,
+				68DAEE0314118CB60007A630 /* Resources */,
+				6808EC7D166185F900F479A9 /* CopyFiles */,
+				68697A84166BFCCB00D08FEA /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68DAEE411412D5FC0007A630 /* PBXTargetDependency */,
+			);
+			name = pumpkin;
+			productName = pumpkin;
+			productReference = 68DAEE0514118CB60007A630 /* pumpkin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		68DAEE2914118D370007A630 /* biportal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68DAEE3114118D370007A630 /* Build configuration list for PBXNativeTarget "biportal" */;
+			buildPhases = (
+				68DAEE2614118D370007A630 /* Sources */,
+				68DAEE2714118D370007A630 /* Frameworks */,
+				68DAEE2814118D370007A630 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = biportal;
+			productName = biportal;
+			productReference = 68DAEE2A14118D370007A630 /* biportal */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		68DAEDFC14118CB60007A630 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 68DAEDFF14118CB60007A630 /* Build configuration list for PBXProject "pumpkin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 68DAEDFA14118CB60007A630;
+			productRefGroup = 68DAEE0614118CB60007A630 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				68DAEE0414118CB60007A630 /* pumpkin */,
+				68DAEE2914118D370007A630 /* biportal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		68DAEE0314118CB60007A630 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				687435A914142E50003EF6EF /* klever-background.png in Resources */,
+				680E89A51482B03A008C9134 /* pumpkin-defaults.plist in Resources */,
+				68B3D56D14E1CD37002B0D56 /* ARequest.xib in Resources */,
+				68D5F05D14F2ADBF00CF4CFE /* ConfirmRequest.xib in Resources */,
+				683B812B15EA9FB5002A9253 /* pumpkin.icns in Resources */,
+				68081EA9160E6D2B009D14E1 /* put.icns in Resources */,
+				68081EAB160F856A009D14E1 /* get.icns in Resources */,
+				68081EAD160F8BE8009D14E1 /* abort.icns in Resources */,
+				68697A74166BC88900D08FEA /* PumpKIN.xib in Resources */,
+				68697A76166BC91900D08FEA /* Credits.rtf in Resources */,
+				68697A82166BCBE000D08FEA /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		68697A84166BFCCB00D08FEA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).app",
+				"$(SRCROOT)/dmg-DS_Store",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).dmg",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\n\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\"\nrm -rf \"$BUILT_PRODUCTS_DIR/DMG\" && mkdir -p \"$BUILT_PRODUCTS_DIR/DMG\"\ncp -R \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app\" \"$BUILT_PRODUCTS_DIR/DMG\"\nmkdir \"$BUILT_PRODUCTS_DIR/DMG/.background\"\ncp \"$SRCROOT/dmg-background.png\" \"$BUILT_PRODUCTS_DIR/DMG/.background/background.png\"\ncp \"$SRCROOT/dmg-DS_Store\" \"$BUILT_PRODUCTS_DIR/DMG/.DS_Store\"\nln -s /Applications \"$BUILT_PRODUCTS_DIR/DMG/Applications\"\nhdiutil makehybrid -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\" -hfs -hfs-openfolder \"$BUILT_PRODUCTS_DIR/DMG\" -default-volume-name \"PumpKIN\" \"$BUILT_PRODUCTS_DIR/DMG\"\nrm -rf \"$BUILT_PRODUCTS_DIR/DMG\"\n\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\nhdiutil convert -format UDZO -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\" \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		68DAEE0114118CB60007A630 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68DAEE1614118CB60007A630 /* main.m in Sources */,
+				68DAEE1D14118CB60007A630 /* PumpKIN.m in Sources */,
+				68458CB7141579E100F1E4FF /* DaemonListener.m in Sources */,
+				68458CBE14157A4100F1E4FF /* SendXFer.m in Sources */,
+				682A27901419688B005AB8FB /* XFer.m in Sources */,
+				682A2792141BD97B005AB8FB /* TFTPPacket.m in Sources */,
+				680E89A91482EF73008C9134 /* NumberTransformer.m in Sources */,
+				68783E43148585EB00DEE0B5 /* IPFormatter.m in Sources */,
+				685CCB0F14D4AC7700F5B76B /* XFersViewDatasource.m in Sources */,
+				685CCB1214D5BA1300F5B76B /* StringsAttached.m in Sources */,
+				686315D514DDE7B40067B682 /* ReceiveXFer.m in Sources */,
+				68B3D57114E1CE8D002B0D56 /* ARequest.m in Sources */,
+				68D5F06114F4397200CF4CFE /* ConfirmRequest.m in Sources */,
+				6808EC7A166158AF00F479A9 /* IPTransformer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68DAEE2614118D370007A630 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68DAEE2E14118D370007A630 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68DAEE411412D5FC0007A630 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 68DAEE2914118D370007A630 /* biportal */;
+			targetProxy = 68DAEE401412D5FC0007A630 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		68697A80166BCBE000D08FEA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				68697A81166BCBE000D08FEA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		68DAEE2114118CB70007A630 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		68DAEE2214118CB70007A630 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Mikhail Krelin";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		68DAEE2414118CB70007A630 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pumpkin/pumpkin-Prefix.pch";
+				INFOPLIST_FILE = "pumpkin/pumpkin-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		68DAEE2514118CB70007A630 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "pumpkin/pumpkin-Prefix.pch";
+				INFOPLIST_FILE = "pumpkin/pumpkin-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		68DAEE3214118D370007A630 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		68DAEE3314118D370007A630 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		68DAEDFF14118CB60007A630 /* Build configuration list for PBXProject "pumpkin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68DAEE2114118CB70007A630 /* Debug */,
+				68DAEE2214118CB70007A630 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68DAEE2314118CB70007A630 /* Build configuration list for PBXNativeTarget "pumpkin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68DAEE2414118CB70007A630 /* Debug */,
+				68DAEE2514118CB70007A630 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68DAEE3114118D370007A630 /* Build configuration list for PBXNativeTarget "biportal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68DAEE3214118D370007A630 /* Debug */,
+				68DAEE3314118D370007A630 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 68DAEDFC14118CB60007A630 /* Project object */;
+}
