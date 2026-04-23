@@ -44,7 +44,7 @@ static void cbListener(CFSocketRef sockie,CFSocketCallBackType cbt,CFDataRef cba
 -(DaemonListener*)initWithAddress:(struct sockaddr_in*)sin {
     if(!(self=[super init])) return self;
     
-    pumpkin = NSApplication.sharedApplication.delegate;
+    pumpkin = (PumpKIN*) NSApplication.sharedApplication.delegate;
 
     @try {
 	CFSocketContext ctx;

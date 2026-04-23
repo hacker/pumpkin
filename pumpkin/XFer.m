@@ -23,7 +23,7 @@ static void cbXfer(CFSocketRef sockie,CFSocketCallBackType cbt,CFDataRef cba,
     xferSize = 0; xferBlocks = 0;
     xferType = nil; xferFilename = nil;
     state = xferStateNone;
-    pumpkin = NSApplication.sharedApplication.delegate;
+    pumpkin = (PumpKIN *)NSApplication.sharedApplication.delegate;
     queue = [[NSMutableArray alloc]initWithCapacity:4];
     localFile = nil;
     retryTimeout = 3;
