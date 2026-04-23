@@ -8,6 +8,8 @@
 #include <errno.h>
 #include <sys/stat.h>
 
+#pragma clang diagnostic ignored "-Wcomma"
+
 int main (int argc, const char * argv[]) {
     if(geteuid()) return fprintf(stderr, "unprivileged\n"), printf("%d",EPERM), 1;
     if(argc==1) {
@@ -42,5 +44,3 @@ int main (int argc, const char * argv[]) {
 	   ? errno : 0);
     return rc;
 }
-
-
