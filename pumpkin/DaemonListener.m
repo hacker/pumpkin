@@ -55,7 +55,7 @@ static void cbListener(CFSocketRef sockie,CFSocketCallBackType cbt,CFDataRef cba
 	sockie = CFSocketCreate(kCFAllocatorDefault,PF_INET,SOCK_DGRAM,IPPROTO_UDP,
 				kCFSocketReadCallBack|kCFSocketDataCallBack,
 				cbListener,&ctx);
-	if(ntohs(sin->sin_port)>1024) {
+	if(ntohs(sin->sin_port)>1024 || sin->sin_addr.s_addr==INADDR_ANY) {
 	    NSData *nsd = [NSData dataWithBytes:sin length:sizeof(*sin)];
 	    if(CFSocketSetAddress(sockie, (CFDataRef)nsd))
 		[[NSException exceptionWithName:@"BindFailure"
