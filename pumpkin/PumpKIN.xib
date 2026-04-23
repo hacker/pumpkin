@@ -356,7 +356,7 @@
             </items>
             <point key="canvasLocation" x="140" y="154"/>
         </menu>
-        <window title="PumpKIN" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="371" userLabel="Window - PumpKIN">
+        <window title="PumpKIN" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" frameAutosaveName="PumpKINMainWindow" animationBehavior="default" id="371" userLabel="Window - PumpKIN">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="600" height="322"/>
@@ -613,7 +613,7 @@
             </toolbar>
             <point key="canvasLocation" x="139" y="125"/>
         </window>
-        <window title="PumpKIN Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="815" userLabel="Window - PumpKIN preferences">
+        <window title="PumpKIN Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="PumpKINPreferencesWindow" animationBehavior="default" id="815" userLabel="Window - PumpKIN preferences">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="131" y="159" width="603" height="348"/>
