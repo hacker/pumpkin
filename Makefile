@@ -1,18 +1,32 @@
-VERSION=0.0
+-include Makefile.local
+XCB?=xcodebuild
+XCBFLAGS=-project ${KIN}.xcodeproj -scheme ${KIN} -configuration Release CONFIGURATION_BUILD_DIR=${builddir}
 KIN=pumpkin
-PACKAGE=${KIN}-${VERSION}
-TARNAME=${PACKAGE}-osx
-TARS=$(addprefix ${TARNAME}.tar.,gz bz2) ${TARNAME}.tar
+VERSION=$(shell $(XCB) ${XCBFLAGS} -showBuildSettings -json|jq '.[0].buildSettings.MARKETING_VERSION')
 
-dist: ${TARS}
+builddir?=build
+dmgdir?=${builddir}/dmg
+dmg?=${builddir}/${KIN}-${VERSION}.dmg
+
+default:
+	@echo "huh?"
+
+${builddir}/${KIN}.app:
+	$(XCB) ${XCBFLAGS}
+${builddir}/dmgdir.stamp: ${builddir}/${KIN}.app
+	rm -rf ${dmgdir} && mkdir ${dmgdir}
+	cp -R ${builddir}/${KIN}.app ${dmgdir}/
+	mkdir ${dmgdir}/.background
+	cp dmg-background.png ${dmgdir}/.background/background.png
+	cp dmg-DS_Store ${dmgdir}/.DS_Store
+	ln -s /Applications ${dmgdir}/Applications
+	touch $@
+${builddir}/${KIN}-hybrid.dmg: ${builddir}/dmgdir.stamp
+	hdiutil makehybrid -o $@ -hfs -hfs-openfolder ${dmgdir} -default-volume-name "PumpKIN" ${dmgdir}
+${dmg}: ${builddir}/${KIN}-hybrid.dmg
+	hdiutil convert -format UDZO -o $@ $<
+
+build: ${dmg}
+
 clean:
-	rm -f ${TARS}
-
-${TARNAME}.tar.gz: ${TARNAME}.tar
-	gzip -v9 <"$<" >"$@"
-${TARNAME}.tar.bz2: ${TARNAME}.tar
-	bzip2 -v9 <"$<" >"$@"
-${TARNAME}.tar:
-	git archive --format tar -o "$@" --prefix="${PACKAGE}/" HEAD
-
-.INTERMEDIATE: ${TARNAME}.tar
+	rm -rf ${builddir}

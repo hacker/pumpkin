@@ -248,7 +248,6 @@
 				68DAEE0214118CB60007A630 /* Frameworks */,
 				68DAEE0314118CB60007A630 /* Resources */,
 				6808EC7D166185F900F479A9 /* CopyFiles */,
-				68697A84166BFCCB00D08FEA /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -325,27 +324,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		68697A84166BFCCB00D08FEA /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).app",
-				"$(SRCROOT)/dmg-DS_Store",
-			);
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME)-$(MARKETING_VERSION).dmg",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -ex\n\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\"\nrm -rf \"$BUILT_PRODUCTS_DIR/DMG\" && mkdir -p \"$BUILT_PRODUCTS_DIR/DMG\"\ncp -R \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/\" \"$BUILT_PRODUCTS_DIR/DMG/$PRODUCT_NAME.app\"\nmkdir \"$BUILT_PRODUCTS_DIR/DMG/.background\"\ncp \"$SRCROOT/dmg-background.png\" \"$BUILT_PRODUCTS_DIR/DMG/.background/background.png\"\ncp \"$SRCROOT/dmg-DS_Store\" \"$BUILT_PRODUCTS_DIR/DMG/.DS_Store\"\nln -s /Applications \"$BUILT_PRODUCTS_DIR/DMG/Applications\"\nhdiutil makehybrid -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\" -hfs -hfs-openfolder \"$BUILT_PRODUCTS_DIR/DMG\" -default-volume-name \"PumpKIN\" \"$BUILT_PRODUCTS_DIR/DMG\"\nrm -rf \"$BUILT_PRODUCTS_DIR/DMG\"\n\nrm -f \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.dmg\"\nhdiutil convert -format UDZO -o \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-$MARKETING_VERSION.dmg\" \"$BUILT_PRODUCTS_DIR/$PRODUCT_NAME-hybrid.dmg\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		68DAEE0114118CB60007A630 /* Sources */ = {
