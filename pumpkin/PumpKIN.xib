@@ -584,23 +584,17 @@
             </view>
             <toolbar key="toolbar" implicitIdentifier="348FD175-E511-41B0-AC1C-205ED57FC50B" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconAndLabel" sizeMode="regular" id="994">
                 <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="FAB1C64D-0CC8-46A0-815A-6423AD586E28" label="Get file" paletteLabel="Get file" toolTip="Initiate RRQ request." tag="-1" image="get" id="1000" userLabel="Toolbar Item - Get file">
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
+                    <toolbarItem implicitItemIdentifier="FAB1C64D-0CC8-46A0-815A-6423AD586E28" label="Get file" paletteLabel="Get file" toolTip="Initiate RRQ request." tag="-1" image="get" sizingBehavior="auto" id="1000" userLabel="Toolbar Item - Get file">
                         <connections>
                             <action selector="getFile:" target="494" id="1144"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="7587C7D2-FAE0-4AF7-9DDB-64F34C45BD11" label="Put file" paletteLabel="Put file" toolTip="Initiate WRQ request." tag="-1" image="put" id="1001" userLabel="Toolbar Item - Put file">
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
+                    <toolbarItem implicitItemIdentifier="7587C7D2-FAE0-4AF7-9DDB-64F34C45BD11" label="Put file" paletteLabel="Put file" toolTip="Initiate WRQ request." tag="-1" image="put" sizingBehavior="auto" id="1001" userLabel="Toolbar Item - Put file">
                         <connections>
                             <action selector="putFile:" target="494" id="1145"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="6D17B806-047D-4E35-9CBF-FA07113768DF" explicitItemIdentifier="abort_xfer" label="Abort xfer" paletteLabel="Abort xfer" toolTip="Cancel transfer in progress." tag="-1" image="abort" id="1002" userLabel="Toolbar Item - Abort xfer">
-                        <size key="minSize" width="22" height="22"/>
-                        <size key="maxSize" width="22" height="22"/>
+                    <toolbarItem implicitItemIdentifier="6D17B806-047D-4E35-9CBF-FA07113768DF" explicitItemIdentifier="abort_xfer" label="Abort xfer" paletteLabel="Abort xfer" toolTip="Cancel transfer in progress." tag="-1" image="abort" sizingBehavior="auto" id="1002" userLabel="Toolbar Item - Abort xfer">
                         <connections>
                             <action selector="abortXfer:" target="494" id="1143"/>
                             <binding destination="494" name="enabled" keyPath="self.hasSelectedXfer" id="1023"/>
