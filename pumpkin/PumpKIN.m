@@ -303,4 +303,8 @@
     [NSValueTransformer setValueTransformer:[[[IPTransformer alloc] init] autorelease] forName:@"IPAddressTransformer"];
 }
 
+- (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app {
+    return YES;
+}
+
 @end
