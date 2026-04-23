@@ -27,9 +27,11 @@
 	listener = [[DaemonListener listenerWithDefaults] retain];
     }
     @catch (NSException *e) {
-	[self log:@"Error starting the server. %@: %@",e.name,e.reason];
-	NSAlert *a = [NSAlert alertWithMessageText:@"Failed to enable tftp server" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Failed to enable tftp server.\n%@\n\n%@",e.name,e.reason];
-	a.alertStyle = NSWarningAlertStyle;
+	NSAlert *a = [[NSAlert alloc] init];
+	a.messageText = @"Failed to enable tftp server";
+	a.informativeText = [NSString stringWithFormat:@"Failed to enable tftp server.\n%@\n\n%@", e.name, e.reason];
+	[a addButtonWithTitle:@"OK"];
+	a.alertStyle = NSAlertStyleWarning;
 	enum act_type {
 	    actDont = 0,
 	    actBindToAny = NSAlertThirdButtonReturn+1,
