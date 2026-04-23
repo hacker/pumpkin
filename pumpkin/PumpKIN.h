@@ -8,7 +8,7 @@ enum {
     onWRQTake=0, onWRQPromptIfExists, onWRQPrompt, onWRQDeny
 };
 
-@interface PumpKIN : NSObject <NSApplicationDelegate> {
+@interface PumpKIN : NSObject <NSApplicationDelegate,NSToolbarItemValidation> {
     NSWindow *window;
     NSTextView *logger;
     DaemonListener *listener;
