@@ -332,6 +332,8 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(PRODUCT_NAME).app",
 				"$(SRCROOT)/dmg-DS_Store",
@@ -507,6 +509,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pumpkin/pumpkin-Prefix.pch";
 				INFOPLIST_FILE = "pumpkin/pumpkin-Info.plist";
@@ -526,6 +529,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pumpkin/pumpkin-Prefix.pch";
 				INFOPLIST_FILE = "pumpkin/pumpkin-Info.plist";
