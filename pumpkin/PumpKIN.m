@@ -224,7 +224,7 @@
     op.prompt = @"Set TFTP root";
     op.title = @"TFTP root";
     op.nameFieldLabel = @"TFTP root:";
-    if([op runModal]!=NSFileHandlingPanelOKButton) return;
+    if([op runModal]!=NSModalResponseOK) return;
     [[theDefaults values] setValue:op.URL.path forKey:@"tftpRoot"];
 }
 
@@ -234,7 +234,7 @@
     op.prompt = @"Set log file";
     op.title = @"Log to";
     op.nameFieldLabel = @"Log to";
-    if([op runModal]!=NSFileHandlingPanelOKButton) return;
+    if([op runModal]!=NSModalResponseOK) return;
     [[theDefaults values] setValue:op.URL.path forKey:@"logFile"];
 
 }

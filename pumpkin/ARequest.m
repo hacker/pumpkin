@@ -122,7 +122,7 @@ static void cbHost(CFHostRef h,CFHostInfoType hi,const CFStreamError *e,void *i)
 	p = pp;
     }
     p.prompt = @"Pick the local file";
-    if([p runModal]!=NSFileHandlingPanelOKButton) return;
+    if([p runModal]!=NSModalResponseOK) return;
     self.localFile = p.URL.path;
 }
 
