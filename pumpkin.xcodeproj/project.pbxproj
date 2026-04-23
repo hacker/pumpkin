@@ -99,7 +99,7 @@
 		68697A73166BC88900D08FEA /* PumpKIN.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PumpKIN.xib; sourceTree = "<group>"; };
 		68697A75166BC91900D08FEA /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		68697A7E166BCBAD00D08FEA /* pumpkin-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "pumpkin-Info.plist"; sourceTree = "<group>"; };
-		68697A81166BCBE000D08FEA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		68697A81166BCBE000D08FEA /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		687435A814142E50003EF6EF /* klever-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "klever-background.png"; sourceTree = "<group>"; };
 		68783E41148585EA00DEE0B5 /* IPFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPFormatter.h; sourceTree = "<group>"; };
 		68783E42148585EB00DEE0B5 /* IPFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPFormatter.m; sourceTree = "<group>"; };
