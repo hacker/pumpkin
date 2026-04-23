@@ -64,7 +64,7 @@
 	    if(![self makeLocalFileName:[NSString stringWithFormat:@"%@ (%d)",xferFilename,i]])
 		return;
 	    if(![fm fileExistsAtPath:localFile]) break;
-	    [localFile release],localFile=nil;
+            [localFile release]; localFile=nil;
 	}
 	if(!localFile) {
 	    [self queuePacket:[TFTPPacket packetErrorWithCode:tftpErrFileExists andMessage:@"Couldn't find a name for a file"]];

@@ -10,7 +10,7 @@
 @synthesize isWriteRequest;
 
 -(void)sentence:(int)v {
-    [timeout invalidate], [timeout release], timeout=nil;
+    [timeout invalidate]; [timeout release]; timeout=nil;
     [xfer goOnWithVerdict:v];
     [self.window performClose:nil];
     [[[NSUserDefaultsController sharedUserDefaultsController] values]
@@ -44,7 +44,9 @@
 }
 
 - (void) dealloc {
-    if(timeout) [timeout invalidate], [timeout release];
+    if(timeout) {
+        [timeout invalidate]; [timeout release];
+    };
     if(remoteHost) [remoteHost release];
     if(xfer) [xfer release];
     [super dealloc];

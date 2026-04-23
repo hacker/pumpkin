@@ -265,7 +265,7 @@
 		[NSException raise:@"AuthFailure" format:@"failed to AuthorizationExecuteWithPrivileges(): %d",r];
 	    int e;
 	    int sr = fscanf(f, "%d", &e);
-	    fclose(f),f=NULL;
+            fclose(f); f=NULL;
 	    if(sr!=1)
 		[NSException raise:@"ToolFailure" format:@"failed to setup tool"];
 	    if(e)
@@ -274,7 +274,10 @@
 	*args = bip.UTF8String;
 	pid_t p = fork();
 	if(p<0) [NSException raise:@"ToolFailure" format:@"failed to fork"];
-	if(!p) execv(*args,(char**)args), exit(errno);
+        if(!p) {
+            execv(*args,(char**)args);
+            exit(errno);
+        }
 	int r, wp;
 	while((wp=waitpid(p,&r,0))<0 && errno==EINTR);
 	if(wp!=p) [NSException raise:@"ToolFailure" format:@"failed to wait for tool"];
