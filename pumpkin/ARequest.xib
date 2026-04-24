@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="ARequest">
             <connections>
-                <outlet property="blockSizeBox" destination="7" id="60"/>
                 <outlet property="remoteHostBox" destination="12" id="129"/>
                 <outlet property="window" destination="3" id="29"/>
             </connections>
