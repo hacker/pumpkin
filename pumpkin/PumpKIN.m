@@ -257,7 +257,7 @@
 	    r = AuthorizationCopyRights(a, &ar, NULL, kAuthorizationFlagDefaults|kAuthorizationFlagInteractionAllowed|kAuthorizationFlagPreAuthorize|kAuthorizationFlagExtendRights, NULL);
 	    if(r!=errAuthorizationSuccess)
 		[NSException raise:@"AuthFailure" format:@"failed to AuthorizationCopyRights(): %d",r];
-	    const char *args[] = { NULL };
+	    const char *args[] = { NULL, NULL };
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated"
 	    r = AuthorizationExecuteWithPrivileges(a,bip.UTF8String,
