@@ -518,7 +518,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1090" userLabel="Check Box - listen">
-                                    <rect key="frame" x="13" y="0.0" width="174" height="29"/>
+                                    <rect key="frame" x="13" y="-1" width="174" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <string key="toolTip">When enabled, pumpkin also acts as a daemon (server). Note, that this often requires escalating privileges to bind to the privileged (69 by default) port and may also conflict if you have another tftp daemon running (you'll be notified).</string>
                                     <buttonCell key="cell" type="check" title="Listen on the address" bezelStyle="regularSquare" imagePosition="left" alignment="center" state="on" inset="2" id="1091">
@@ -533,7 +533,7 @@
                                     </connections>
                                 </button>
                                 <textField toolTip="If you only want PumpKIN to listen to TFTP request on one IP address, specify it here." focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1082" userLabel="Text Field - bind address">
-                                    <rect key="frame" x="215" y="3" width="53" height="24"/>
+                                    <rect key="frame" x="215" y="1" width="53" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="center" title="0.0.0.0" drawsBackground="YES" id="1083">
                                         <font key="font" metaFont="system"/>
@@ -551,7 +551,7 @@
                                     </connections>
                                 </textField>
                                 <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1086">
-                                    <rect key="frame" x="333" y="7" width="60" height="16"/>
+                                    <rect key="frame" x="333" y="5" width="60" height="16"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="and port" id="1087">
                                         <font key="font" metaFont="system"/>
@@ -560,7 +560,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <textField toolTip="The standard TFTP port is 69. If you change it, make sure peers are aware of the change and support it." focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1084" userLabel="Text Field - bind port">
-                                    <rect key="frame" x="399" y="3" width="50" height="24"/>
+                                    <rect key="frame" x="399" y="1" width="50" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="69" drawsBackground="YES" id="1085">
                                         <font key="font" metaFont="system"/>
@@ -630,7 +630,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1114">
-                                    <rect key="frame" x="18" y="22" width="481" height="24"/>
+                                    <rect key="frame" x="18" y="13" width="481" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <string key="toolTip">TFTP root is a directory where incoming WRQ transfers are saved and RRQ transfers are served from. Point it to where the file you want to transfer are.</string>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1117">
@@ -643,7 +643,7 @@
                                     </connections>
                                 </textField>
                                 <button toolTip="Browse for the TFTP root directory." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1115">
-                                    <rect key="frame" x="502" y="23" width="66" height="24"/>
+                                    <rect key="frame" x="502" y="13" width="66" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="roundRect" title="Browse" bezelStyle="roundedRect" image="NSPathTemplate" catalog="system" alignment="center" borderStyle="border" inset="2" id="1116">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -664,7 +664,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField toolTip="PumpKIN can optionally log the activity shown on screen into this file." focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1130">
-                                    <rect key="frame" x="18" y="20" width="481" height="24"/>
+                                    <rect key="frame" x="18" y="13" width="481" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1131">
                                         <font key="font" metaFont="system"/>
@@ -676,7 +676,7 @@
                                     </connections>
                                 </textField>
                                 <button toolTip="Browse for the TFTP log file." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1129">
-                                    <rect key="frame" x="502" y="21" width="66" height="24"/>
+                                    <rect key="frame" x="502" y="13" width="66" height="24"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="roundRect" title="Browse" bezelStyle="roundedRect" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1132">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -697,7 +697,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1118">
-                                    <rect key="frame" x="18" y="22" width="190" height="58"/>
+                                    <rect key="frame" x="18" y="14" width="190" height="58"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="190" height="18"/>
@@ -737,7 +737,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <matrix verticalHuggingPriority="750" fixedFrame="YES" allowsEmptySelection="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1123">
-                                    <rect key="frame" x="18" y="22" width="526" height="38"/>
+                                    <rect key="frame" x="18" y="14" width="526" height="38"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     <size key="cellSize" width="261" height="18"/>

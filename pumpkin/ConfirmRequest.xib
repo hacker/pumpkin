@@ -97,7 +97,7 @@
                         </textFieldCell>
                     </textField>
                     <button toolTip="Allow transfer." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="13" userLabel="Button - allow">
-                        <rect key="frame" x="41" y="45" width="67" height="24"/>
+                        <rect key="frame" x="19" y="45" width="116" height="24"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="let it be" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="14">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -108,7 +108,7 @@
                         </connections>
                     </button>
                     <button toolTip="Send back the rejection." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19" userLabel="Button - deny">
-                        <rect key="frame" x="154" y="45" width="95" height="24"/>
+                        <rect key="frame" x="143" y="45" width="113" height="24"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="deny access" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="20">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -119,7 +119,7 @@
                         </connections>
                     </button>
                     <button toolTip="Automatically rename file before saving." verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="21" userLabel="Button - rename">
-                        <rect key="frame" x="52" y="19" width="172" height="24"/>
+                        <rect key="frame" x="20" y="19" width="236" height="24"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="roundRect" title="save under different name" bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="22">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -139,7 +139,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="36"/>
             </connections>
-            <point key="canvasLocation" x="139" y="143"/>
+            <point key="canvasLocation" x="139" y="142.5"/>
         </window>
         <userDefaultsController representsSharedInstance="YES" id="25"/>
     </objects>
