@@ -173,7 +173,7 @@ static void cbXfer(CFSocketRef sockie,CFSocketCallBackType cbt,CFDataRef cba,
 	[retryTimer invalidate]; [retryTimer release]; retryTimer = nil;
     }
     if(giveupTimer) {
-	[giveupTimer invalidate]; [giveupTimer release]; retryTimer = nil;
+	[giveupTimer invalidate]; [giveupTimer release]; giveupTimer = nil;
     }
     [pumpkin unregisterXfer:self];
 }
